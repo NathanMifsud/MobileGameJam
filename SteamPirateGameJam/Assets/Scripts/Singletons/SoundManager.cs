@@ -14,26 +14,26 @@ public class SoundManager : MonoBehaviour {
     private float _TimeSinceLastVoxel = 0f;
     private List<AudioSource> _VoxelWaitingList;
 
-    // UI Buttons
+    [Header("UI Buttons")]
     public AudioSource _SFX_ButtonClick;
     public AudioSource _SFX_ButtonHover;
     public AudioSource _SFX_ButtonGoBack;
 
-    // Music
+    [Header("Music")]
     public AudioSource _MUSIC_Gameplay;
     public AudioSource _MUSIC_Mainmenu;
 
-    // Player
+    [Header("Player")]
     public List<AudioSource> _SFX_EngineLoops;
     public List<AudioSource> _SFX_OnPlayerDeath;
 
-    // Projectiles
+    [Header("Projectiles")]
     public List<AudioSource> _SFX_OnProjectileImpact;
     public List<AudioSource> _SFX_OnFireProjectileDefault;
     public List<AudioSource> _SFX_OnFireProjectileMinigun;
     public List<AudioSource> _SFX_OnFireProjectileSpread;
 
-    // Pickups
+    [Header("Pickups")]
     public List<AudioSource> _SFX_OnPickupMinigun;
     public List<AudioSource> _SFX_OnPickupShotgun;
     public List<AudioSource> _SFX_OnPickupHealth;
