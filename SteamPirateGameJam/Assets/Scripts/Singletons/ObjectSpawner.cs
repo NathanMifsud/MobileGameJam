@@ -61,21 +61,23 @@ public class ObjectSpawner : MonoBehaviour
 
     public void SpawnEnemies()
     {
-       Enemy.EnemyType randomEnemySelect = (Enemy.EnemyType)Random.Range(0,(int)Enemy.EnemyType.Size);
+        Enemy.EnemyType randomEnemySelect = (Enemy.EnemyType)Random.Range(0,(int)Enemy.EnemyType.Size);
 
+        List<Enemy> enemies = new List<Enemy>();
+        enemies = GameManager._Instance.GetEnemies(randomEnemySelect, 1);
         switch (randomEnemySelect)
         {
-            case 0:
-                List<Enemy> enemies = GameManager._Instance.GetEnemies(1);
+            case Enemy.EnemyType.Creatures:
                 break;
-            case 1:
+            case Enemy.EnemyType.SmallBoat:
                 break;
-            case 2:
+            case Enemy.EnemyType.BigBoat:
+                break;
+            case Enemy.EnemyType.Size:
                 break;
             default:
                 break;
         }
-        List<Enemy> enemies = GameManager._Instance.GetEnemies(1);
 
         Invoke("SpawnEnemies", Random.Range(_minEnemySpawnTime, _maxEnemySpawnTime));
     }

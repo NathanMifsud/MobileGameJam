@@ -115,18 +115,18 @@ public class Player : Character {
         switch (_weapon)
         {
             case WEAPON.BASIC:
-                projectile = GameManager._Instance.GetProjectile();
+                projectile = GameManager._Instance.GetProjectile(_team);
                 if (projectile != null)
                     projectile.transform.rotation = transform.rotation;
                 break;
             case WEAPON.SPREAD:
-                projectile = GameManager._Instance.GetProjectile();
+                projectile = GameManager._Instance.GetProjectile(_team);
                 if (projectile != null)
                     projectile.transform.rotation = transform.rotation * Quaternion.Euler(0,30,0);
-                projectile = GameManager._Instance.GetProjectile();
+                projectile = GameManager._Instance.GetProjectile(_team);
                 if (projectile != null)
                     projectile.transform.rotation = transform.rotation;
-                projectile = GameManager._Instance.GetProjectile();
+                projectile = GameManager._Instance.GetProjectile(_team);
                 if (projectile != null)
                     projectile.transform.rotation = transform.rotation * Quaternion.Euler(0, -30, 0);
                 break;
