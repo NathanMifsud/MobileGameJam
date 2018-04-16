@@ -7,7 +7,7 @@
 /[Oo]bj/
 /[Bb]uild/
 /[Bb]uilds/
-/Assets/AssetStoreTools*
+#/Assets/AssetStoreTools*
 
 # Visual Studio 2015 cache directory
 /.vs/
@@ -332,4 +332,3 @@ __pycache__/
 SteamPirateGameJam/Library/metadata/
 SteamPirateGameJam/Library/ShaderCache/
 SteamPirateGameJam/Temp/
-SteamPirateGameJam/
