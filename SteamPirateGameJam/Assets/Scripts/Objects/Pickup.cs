@@ -4,13 +4,34 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    //----------------------------------------------------------------------------------
+    // *** VARIABLES ***
+
+    public enum PickupType { Shotgun, RapidFire, SpeedBoost, Healthpack }
+
+    [Header("Properties")]
+    public PickupType _PickupType;
+
+    //----------------------------------------------------------------------------------
+    // *** FUNCTIONS ***
+
+    private void Start () {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	private void Update () {
 		
 	}
+
+    private void OnTriggerEnter(Collider other) {
+        
+        // Only do stuff if its a player
+        if (other.gameObject.CompareTag("Player")) {
+
+            // On pickup event
+            Player plyr = other.gameObject.GetComponent<Player>();
+            plyr.OnItemPickup(_PickupType);
+        }
+
+    }
 }
