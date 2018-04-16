@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    //----------------------------------------------------------------------------------
+    // *** VARIABLES ***
+
     public float _damage = 1;
     public float _projectileSpeed = 1;
 
@@ -12,8 +15,16 @@ public class Projectile : MonoBehaviour
 
     [Header("OnCharacterHit")]
     public GameObject m_hitEffect = null;
-    // Use this for initialization
 
+    //----------------------------------------------------------------------------------
+    // *** FUNCTIONS ***
+
+    /// -------------------------------------------
+    /// 
+    ///     Update
+    /// 
+    /// -------------------------------------------
+    
     private void Update()
     {
         //Move forwards
@@ -21,6 +32,12 @@ public class Projectile : MonoBehaviour
         position += _projectileSpeed * transform.forward;
         transform.position = position;
     }
+
+    /// -------------------------------------------
+    /// 
+    ///     Events
+    /// 
+    /// -------------------------------------------
 
     private void OnTriggerEnter(Collider other)
     {

@@ -16,8 +16,7 @@ public class GameManager : MonoBehaviour
         public int FlockSize;
     }
     
-    // Enemies
-    [Header("ENEMIES")]
+    [Header("Enemies")]
     public List<Enemies> _EnemyTypes;
     [HideInInspector]
     public List<Enemy> _AllEnemies;
@@ -30,8 +29,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public Player _Player;
     
-    // Projectiles
-    [Header("PROJECTILES")]
+    [Header("Projectiles")]
     public GameObject _PlayerProjectile;
     public GameObject _EnemyProjectile;
     [HideInInspector]
@@ -243,6 +241,9 @@ public class GameManager : MonoBehaviour
                     _ActivePlayerProjectiles.Remove(plyrProj);
                 }
             }
+
+            // Play sound
+            SoundManager._Instance.PlayPlayerProjectileImpact(0.9f, 1.1f);
         }
 
         // Enemy team projectiles
@@ -259,6 +260,9 @@ public class GameManager : MonoBehaviour
                     _ActiveEnemyProjectiles.Remove(enemyProj);
                 }
             }
+
+            // Play sound
+            SoundManager._Instance.PlayEnemyProjectileImpact(0.9f, 1.1f);
         }
     }
 

@@ -28,7 +28,8 @@ public class SoundManager : MonoBehaviour {
     public List<AudioSource> _SFX_OnPlayerDeath;
 
     [Header("Projectiles")]
-    public List<AudioSource> _SFX_OnProjectileImpact;
+    public List<AudioSource> _SFX_OnEnemyProjectileImpact;
+    public List<AudioSource> _SFX_OnPlayerProjectileImpact;
     public List<AudioSource> _SFX_OnFireProjectileDefault;
     public List<AudioSource> _SFX_OnFireProjectileRapidFire;
     public List<AudioSource> _SFX_OnFireProjectileSpread;
@@ -243,14 +244,28 @@ public class SoundManager : MonoBehaviour {
     /// 
     /// -------------------------------------------
 
-    public void PlayProjectileImpact(float pitchMin, float pitchMax) {
+    public void PlayEnemyProjectileImpact(float pitchMin, float pitchMax) {
 
         // Precautions
-        if (_SFX_OnProjectileImpact.Count > 0) {
+        if (_SFX_OnEnemyProjectileImpact.Count > 0) {
 
             // Get random sound from list
-            int i = RandomSoundInt(_SFX_OnProjectileImpact);
-            AudioSource sound = _SFX_OnProjectileImpact[i];
+            int i = RandomSoundInt(_SFX_OnEnemyProjectileImpact);
+            AudioSource sound = _SFX_OnEnemyProjectileImpact[i];
+
+            // Play the sound with a random pitch
+            sound.pitch = Random.Range(pitchMin, pitchMax);
+            sound.Play();
+        }
+    }
+    public void PlayPlayerProjectileImpact(float pitchMin, float pitchMax) {
+
+        // Precautions
+        if (_SFX_OnPlayerProjectileImpact.Count > 0) {
+
+            // Get random sound from list
+            int i = RandomSoundInt(_SFX_OnPlayerProjectileImpact);
+            AudioSource sound = _SFX_OnPlayerProjectileImpact[i];
 
             // Play the sound with a random pitch
             sound.pitch = Random.Range(pitchMin, pitchMax);

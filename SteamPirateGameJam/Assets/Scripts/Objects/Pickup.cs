@@ -17,14 +17,26 @@ public class Pickup : MonoBehaviour {
 
     //----------------------------------------------------------------------------------
     // *** FUNCTIONS ***
-	
-	private void Update ()
+
+    /// -------------------------------------------
+    /// 
+    ///     Update
+    /// 
+    /// -------------------------------------------
+
+    private void Update ()
     {
         //Move downwards
         Vector3 position = transform.position;
         position += _pickupSpeed * Vector3.down;
         transform.position = position;
     }
+
+    /// -------------------------------------------
+    /// 
+    ///     Events
+    /// 
+    /// -------------------------------------------
 
     //Moved onto the screen, so player can see
     private void OnBecameVisible()
@@ -73,4 +85,5 @@ public class Pickup : MonoBehaviour {
             }
         }
     }
+
 }
