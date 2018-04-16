@@ -6,6 +6,8 @@ public class Character : MonoBehaviour
 {
     
     public enum TEAM { PLAYER,ENEMY};
+
+    [HideInInspector]
     public TEAM _team;
 
     public float m_health = 1;
@@ -56,6 +58,11 @@ public class Character : MonoBehaviour
         {
             Destroy(Instantiate(m_deathEffect, transform.position, Quaternion.identity), 5.0f);
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        m_currentHealth -= damage;
     }
 
     public virtual void FireProjectile()

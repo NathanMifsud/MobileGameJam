@@ -21,14 +21,15 @@ public class Player : Character {
 
     private Rigidbody _rb = null;
     // Use this for initialization
-    void Start ()
+    protected override void Start()
     {
+        base.Update();
+
+        _team = TEAM.PLAYER;
+
         Camera mainCamera = Camera.main;
         _playAreaMin = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, transform.position.z - mainCamera.transform.position.z));
         _playAreaMax = Camera.main.ScreenToWorldPoint(new Vector3(mainCamera.pixelWidth, mainCamera.pixelHeight, transform.position.z - mainCamera.transform.position.z));
-
-        Debug.Log(_playAreaMin);
-        Debug.Log(_playAreaMax);
 
         //Move to bottom of screen
         float yOffset = (_playAreaMax.y - _playAreaMin.y) * (1 - _yPlayRatio) *0.5f;
@@ -65,7 +66,6 @@ public class Player : Character {
             position.y = _playAreaMax.y;
 
         transform.position = position;
-
     }
 
     public void OnItemPickup(Pickup.PickupType pickupType)
