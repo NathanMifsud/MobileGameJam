@@ -30,12 +30,12 @@ public class SoundManager : MonoBehaviour {
     [Header("Projectiles")]
     public List<AudioSource> _SFX_OnProjectileImpact;
     public List<AudioSource> _SFX_OnFireProjectileDefault;
-    public List<AudioSource> _SFX_OnFireProjectileMinigun;
+    public List<AudioSource> _SFX_OnFireProjectileRapidFire;
     public List<AudioSource> _SFX_OnFireProjectileSpread;
 
     [Header("Pickups")]
-    public List<AudioSource> _SFX_OnPickupMinigun;
-    public List<AudioSource> _SFX_OnPickupShotgun;
+    public List<AudioSource> _SFX_OnPickupRapidFire;
+    public List<AudioSource> _SFX_OnPickupSpread;
     public List<AudioSource> _SFX_OnPickupHealth;
     public List<AudioSource> _SFX_OnPickupSpeedBoost;
 
@@ -276,11 +276,11 @@ public class SoundManager : MonoBehaviour {
     public void PlayFireProjectileMinigun(float pitchMin, float pitchMax) {
 
         // Precautions
-        if (_SFX_OnFireProjectileMinigun.Count > 0) {
+        if (_SFX_OnFireProjectileRapidFire.Count > 0) {
 
             // Get random sound from list
-            int i = RandomSoundInt(_SFX_OnFireProjectileMinigun);
-            AudioSource sound = _SFX_OnFireProjectileMinigun[i];
+            int i = RandomSoundInt(_SFX_OnFireProjectileRapidFire);
+            AudioSource sound = _SFX_OnFireProjectileRapidFire[i];
 
             // Play the sound with a random pitch
             sound.pitch = Random.Range(pitchMin, pitchMax);
@@ -309,14 +309,14 @@ public class SoundManager : MonoBehaviour {
     /// 
     /// -------------------------------------------
 
-    public void PlayPickupMinigun(float pitchMin, float pitchMax) {
+    public void PlayPickupRapidFire(float pitchMin, float pitchMax) {
 
         // Precautions
-        if (_SFX_OnPickupMinigun.Count > 0) {
+        if (_SFX_OnPickupRapidFire.Count > 0) {
 
             // Get random sound from list
-            int i = RandomSoundInt(_SFX_OnPickupMinigun);
-            AudioSource sound = _SFX_OnPickupMinigun[i];
+            int i = RandomSoundInt(_SFX_OnPickupRapidFire);
+            AudioSource sound = _SFX_OnPickupRapidFire[i];
 
             // Play the sound with a random pitch
             sound.pitch = Random.Range(pitchMin, pitchMax);
@@ -327,11 +327,11 @@ public class SoundManager : MonoBehaviour {
     public void PlayPickupShotgun(float pitchMin, float pitchMax) {
 
         // Precautions
-        if (_SFX_OnPickupShotgun.Count > 0) {
+        if (_SFX_OnPickupSpread.Count > 0) {
 
             // Get random sound from list
-            int i = RandomSoundInt(_SFX_OnPickupShotgun);
-            AudioSource sound = _SFX_OnPickupShotgun[i];
+            int i = RandomSoundInt(_SFX_OnPickupSpread);
+            AudioSource sound = _SFX_OnPickupSpread[i];
 
             // Play the sound with a random pitch
             sound.pitch = Random.Range(pitchMin, pitchMax);

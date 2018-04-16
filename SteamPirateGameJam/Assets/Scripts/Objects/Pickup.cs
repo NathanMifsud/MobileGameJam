@@ -7,7 +7,7 @@ public class Pickup : MonoBehaviour {
     //----------------------------------------------------------------------------------
     // *** VARIABLES ***
 
-    public enum PickupType { Shotgun, RapidFire, SpeedBoost, Healthpack }
+    public enum PickupType { Spread, RapidFire, SpeedBoost, Healthpack }
 
     [Header("Properties")]
     public PickupType _PickupType;
@@ -49,7 +49,28 @@ public class Pickup : MonoBehaviour {
             Player plyer = other.gameObject.GetComponent<Player>();
             plyer.OnItemPickup(_PickupType);
             GameManager._Instance.OnPickup(this);
-        }
 
+            // Play pickup sound
+            switch (_PickupType) {
+
+                case PickupType.Spread:
+                    SoundManager._Instance.PlayPickupShotgun(0.9f, 1.1f);
+                    break;
+
+                case PickupType.RapidFire:
+                    SoundManager._Instance.PlayPickupRapidFire(0.9f, 1.1f);
+                    break;
+
+                case PickupType.SpeedBoost:
+                    SoundManager._Instance.PlayPickupSpeedBoost(0.9f, 1.1f);
+                    break;
+
+                case PickupType.Healthpack:
+                    SoundManager._Instance.PlayPickupHealthpack(0.9f, 1.1f);
+                    break;
+
+                default: break;
+            }
+        }
     }
 }
