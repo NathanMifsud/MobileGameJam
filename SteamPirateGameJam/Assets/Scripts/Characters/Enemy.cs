@@ -8,7 +8,7 @@ public class Enemy : Character {
     // *** VARIABLES ***
 
     public enum State { Pending, Availiable, Active }
-    public enum EnemyType { Creatures, SmallBoat, BigBoat }
+    public enum EnemyType { Creatures, SmallBoat, BigBoat, Size }
 
     [Header("Type")]
     public EnemyType _EnemyType;

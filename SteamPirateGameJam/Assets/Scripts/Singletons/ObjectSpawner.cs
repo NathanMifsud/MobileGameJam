@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
-
     //Setup as singleton
     [HideInInspector]
     public static ObjectSpawner _Instance;
@@ -14,7 +13,6 @@ public class ObjectSpawner : MonoBehaviour
         // Destroy old singleton if it doesnt match THIS instance
         if (_Instance != null && _Instance != this)
         {
-
             Destroy(this.gameObject);
             return;
         }
@@ -63,7 +61,20 @@ public class ObjectSpawner : MonoBehaviour
 
     public void SpawnEnemies()
     {
-        int randomEnemySelect = Random.Range(0,);
+       Enemy.EnemyType randomEnemySelect = (Enemy.EnemyType)Random.Range(0,(int)Enemy.EnemyType.Size);
+
+        switch (randomEnemySelect)
+        {
+            case 0:
+                List<Enemy> enemies = GameManager._Instance.GetEnemies(1);
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            default:
+                break;
+        }
         List<Enemy> enemies = GameManager._Instance.GetEnemies(1);
 
         Invoke("SpawnEnemies", Random.Range(_minEnemySpawnTime, _maxEnemySpawnTime));

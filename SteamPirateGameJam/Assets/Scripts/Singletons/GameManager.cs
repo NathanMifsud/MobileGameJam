@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public List<Projectile> _PendingPlayerProjectiles;
     private int _POOL_SIZE_PLAYER_PROJECTILES = 30;
+
     [HideInInspector]
     public List<Projectile> _EnemyProjectiles;
     [HideInInspector]
@@ -83,7 +84,7 @@ public class GameManager : MonoBehaviour
         foreach (var enemyType in _EnemyTypes) {
 
             // Based on individual each enemy type count
-            for (int i = 0; i < enemyType.Count; i++) {
+            for (int i = 0; i < enemyType.Count; i++){
 
                 // Create game object
                 Instantiate(enemyType._Prefab.gameObject);
