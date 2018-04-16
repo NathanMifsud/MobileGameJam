@@ -21,17 +21,31 @@ public class Enemy : Character {
     public float _MovementSpeed;
     public float _RotationSpeed;
 
+    private FollowPath _Pathfinding;
+
+    [Header("Firing")]
+    public GameObject _FiringTarget;
+    public bool _FindRandomTargetWithinArea;
+    public GameObject _AreaBounds;
+
     //----------------------------------------------------------------------------------
     // *** FUNCTIONS ***
 
-    private void Start () {
-		
+    protected override void Start () {
+
+        base.Start();
+
+        // Get component references
+        _Pathfinding = GetComponent<FollowPath>();
 	}
 
-    private void Update () {
+    protected override void Update () {
 
         base.Update();
-		
+
+        // Perform pathfinding if agent in an active state
+        _Pathfinding.enabled = _CurrentState == State.Active;
+
         // Update respawn timer if agent is currently pending(dead)
         if (_CurrentState == State.Pending) {
 
@@ -52,23 +66,48 @@ public class Enemy : Character {
                         break;
                     }
                 }
-
-                // Reset timer
-                _CurrentSpawnTimer = 0f;
             }
         }
-        
-	}
 
-    private void OnSpawn() {
-    
-        // Reset health stats
-        
+        // Continuously stream fire
+        if (_CanFire) {
+
+            OnFire();
+        }
     }
 
-    protected override void OnDeath() {
+    private void OnSpawn() {
+
+        // Reset health stats
+        m_currentHealth = m_health;
+    }
+
+    public override void OnDeath() {
 
         base.OnDeath();
+
+        // Reset respawn timer
+        _CurrentSpawnTimer = 0f;
+
+        // Move to pending object pool
+        foreach (var agent in GameManager._Instance._ActiveEnemies) {
+
+            // We have found ourself
+            if (agent == this) {
+
+                // Move to next pool
+                GameManager._Instance._PendingEnemies.Add(agent);
+                GameManager._Instance._ActiveEnemies.Remove(agent);
+                break;
+            }
+        }
+    }
+
+    public override void OnFire() {
+        
+        // Reset firing delay
+        base.OnFire();
+
 
     }
 

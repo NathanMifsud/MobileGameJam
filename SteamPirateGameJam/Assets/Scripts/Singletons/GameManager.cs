@@ -104,7 +104,9 @@ public class GameManager : MonoBehaviour
         // Active enemies are too low
         if (_ActiveEnemies.Count <= _OnScreenMinimum) {
 
-            // Grab an availiable enemy and spawn it
+            // Grab an availiable enemy and respawn it
+
+
         }
 
     }

@@ -4,47 +4,55 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    
+    public float m_health = 1;
     [SerializeField]
-    private float m_health = 1;
-    private float m_currentHealth = 1;
+    protected float m_currentHealth = 1;    
 
-    [SerializeField]
-    private GameObject m_deathEffect = null;
+    [Header("Firing Delay")]
+    public float m_baseFireDelay = 1;
+    private float _CurrentFiringDelay = 0f;
+    protected bool _CanFire;
 
-    [SerializeField]
-    private float m_baseFireRate = 1;
-
-    private GameManager m_gameManager = null;
+    [Header("OnDeath")]
+    public GameObject m_deathEffect = null;
 
     // Use this for initialization
     protected virtual void Start ()
     {
         m_currentHealth = m_health;
-        //TODO grab gamemanger instance
     }
 
     // Update is called once per frame
-    protected virtual void Update ()
+    protected virtual void Update()
     {
-		if(IsDead())
+        if (IsDead())
         {
             OnDeath();
         }
-	}
+
+        // Update firing delay
+        _CurrentFiringDelay -= Time.deltaTime;
+        _CanFire = _CurrentFiringDelay <= 0f;
+    }
 
     private bool IsDead()
     {
-        return m_currentHealth < 0;
+        return m_currentHealth <= 0;
     }
 
-    protected virtual void OnDeath()
+    public virtual void OnDeath()
     {
         if(m_deathEffect!=null) // Create death effect
         {
             Destroy(Instantiate(m_deathEffect, transform.position, Quaternion.identity), 5.0f);
         }
-
-        //TODO add to objectpool
-
     }
+
+    public virtual void OnFire() {
+
+        // Reset firing delay
+        _CurrentFiringDelay = m_baseFireDelay;
+    }
+
 }

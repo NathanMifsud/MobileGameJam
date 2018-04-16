@@ -10,7 +10,7 @@ public class FollowPath : MonoBehaviour {
     public List<Transform> _TargetPoints;
     public float _TargetThreshold = 5f;
 
-    private Enemy _EnemyController;
+    private Enemy _Agent;
     private Transform _TargetTransform;
 
     private int _TargetsLength;
@@ -22,7 +22,7 @@ public class FollowPath : MonoBehaviour {
     private void Start () {
 
         // Get component references
-        _EnemyController = GetComponent<Enemy>();
+        _Agent = GetComponent<Enemy>();
 
         _TargetsLength = _TargetPoints.Count;
 
@@ -34,7 +34,7 @@ public class FollowPath : MonoBehaviour {
     private void Update () {
 
         // Agent & target are within the threshold (has reached target)
-        if (Vector3.Distance(_EnemyController.transform.position, _TargetTransform.position) < _TargetThreshold) {
+        if (Vector3.Distance(_Agent.transform.position, _TargetTransform.position) < _TargetThreshold) {
 
             // Not the end of the array yet
             if (_ArrayPosition < _TargetsLength) {
@@ -48,7 +48,7 @@ public class FollowPath : MonoBehaviour {
             else {
 
                 // Kill agent for pending recycle
-                
+                _Agent.OnDeath();
             }
         }
         
@@ -56,11 +56,11 @@ public class FollowPath : MonoBehaviour {
         else {
 
             // Look at current target's position
-            _EnemyController.transform.LookAt(_TargetTransform);
+            _Agent.transform.LookAt(_TargetTransform);
 
             // Move towards last known facing direction
-            float speed = _EnemyController._MovementSpeed * Time.deltaTime;
-            _EnemyController.transform.Translate(Vector3.forward * speed);
+            float speed = _Agent._MovementSpeed * Time.deltaTime;
+            _Agent.transform.Translate(Vector3.forward * speed);
         }
 	}
 
