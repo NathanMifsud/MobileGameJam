@@ -68,15 +68,35 @@ public class ObjectSpawner : MonoBehaviour
         switch (randomEnemySelect)
         {
             case Enemy.EnemyType.Creatures:
+            case Enemy.EnemyType.BigBoat:
+                enemies = GameManager._Instance.GetEnemies(randomEnemySelect, 1);
                 break;
             case Enemy.EnemyType.SmallBoat:
-                break;
-            case Enemy.EnemyType.BigBoat:
-                break;
-            case Enemy.EnemyType.Size:
+                enemies = GameManager._Instance.GetEnemies(randomEnemySelect, 3);
                 break;
             default:
                 break;
+        }
+
+        //Set spawn locaiton of enemy
+        foreach (Enemy enemy in enemies)
+        {
+            //Spawn at 
+            if(enemy._SpawnLocation !=null)
+            {
+                enemy.transform.position = enemy._SpawnLocation.position;
+            }
+            else
+            {
+                Vector3 position = Vector3.zero;
+                //Random x pos in range of screen;
+                position.x = Random.Range(_playAreaMin.x, _playAreaMax.x);
+
+                //Starting Y just above play area;
+                position.y = _playAreaMax.y + 1;
+
+                enemy.transform.position = position;
+            }
         }
 
         Invoke("SpawnEnemies", Random.Range(_minEnemySpawnTime, _maxEnemySpawnTime));

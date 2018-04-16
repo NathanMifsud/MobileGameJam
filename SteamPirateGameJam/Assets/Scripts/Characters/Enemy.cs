@@ -14,8 +14,9 @@ public class Enemy : Character {
     public EnemyType _EnemyType;
 
     [Header("Spawning")]
-    public float _InitialSpawnDelay;
+
     public float _RespawnDelay;
+    public Transform _SpawnLocation = null;
 
     [HideInInspector]
     public State _CurrentState;

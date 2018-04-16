@@ -70,5 +70,18 @@ public class Character : MonoBehaviour
     {
 
     }
+    protected void SpawnBullet(Vector3 position, Quaternion facingDir)
+    {
+        SpawnBullet(position, facingDir, 0);
+    }
 
+    protected void SpawnBullet(Vector3 position, Quaternion facingDir, float rotationOffset)
+    {
+        Projectile projectile = GameManager._Instance.GetProjectile(_team);
+        if (projectile != null)
+        {
+            projectile.transform.position = position;
+            projectile.transform.rotation = facingDir * Quaternion.Euler(0, rotationOffset, 0);
+        }
+    }
 }
