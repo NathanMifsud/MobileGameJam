@@ -80,7 +80,7 @@ public class Enemy : Character {
     private void OnSpawn() {
 
         // Reset health stats
-        m_currentHealth = m_health;
+        _currentHealth = _health;
     }
 
     public override void OnDeath() {
