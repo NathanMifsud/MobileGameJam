@@ -5,6 +5,9 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     
+    public enum TEAM { PLAYER,ENEMY};
+    public TEAM _team;
+
     public float m_health = 1;
     [SerializeField]
     protected float m_currentHealth = 1;    
@@ -33,7 +36,13 @@ public class Character : MonoBehaviour
 
         // Update firing delay
         _CurrentFiringDelay -= Time.deltaTime;
-        _CanFire = _CurrentFiringDelay <= 0f;
+
+        if(_CurrentFiringDelay <= 0f)
+        {
+            FireProjectile();
+            _CurrentFiringDelay = m_baseFireDelay;
+        }
+ 
     }
 
     private bool IsDead()
@@ -49,10 +58,9 @@ public class Character : MonoBehaviour
         }
     }
 
-    public virtual void OnFire() {
+    public virtual void FireProjectile()
+    {
 
-        // Reset firing delay
-        _CurrentFiringDelay = m_baseFireDelay;
     }
 
 }
