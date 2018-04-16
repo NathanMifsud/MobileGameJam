@@ -15,17 +15,10 @@ public class GameManager : MonoBehaviour
         public int Count;
         public int FlockSize;
     }
-
+    
+    // Enemies
     [Header("ENEMIES")]
     public List<Enemies> _EnemyTypes;
-
-    [Header("PROJECTILES")]
-    public GameObject _PlayerProjectile;
-    public GameObject _EnemyProjectile;
-
-    // Object pools
-
-    // Enemies
     [HideInInspector]
     public List<Enemy> _AllEnemies;
     [HideInInspector]
@@ -36,22 +29,24 @@ public class GameManager : MonoBehaviour
     public List<Enemy> _AvailiableEnemies;
     [HideInInspector]
     public Player _Player;
-
+    
     // Projectiles
+    [Header("PROJECTILES")]
+    public GameObject _PlayerProjectile;
+    public GameObject _EnemyProjectile;
     [HideInInspector]
     public List<Projectile> _PlayerProjectiles;
     [HideInInspector]
     public List<Projectile> _ActivePlayerProjectiles;
     [HideInInspector]
     public List<Projectile> _PendingPlayerProjectiles;
-    private int _POOL_SIZE_PLAYER_PROJECTILES = 30;
-
     [HideInInspector]
     public List<Projectile> _EnemyProjectiles;
     [HideInInspector]
     public List<Projectile> _ActiveEnemyProjectiles;
     [HideInInspector]
     public List<Projectile> _PendingEnemyProjectiles;
+    private int _POOL_SIZE_PLAYER_PROJECTILES = 30;
     private int _POOL_SIZE_ENEMY_PROJECTILES = 100;
 
     // Pickups
@@ -65,6 +60,12 @@ public class GameManager : MonoBehaviour
     //----------------------------------------------------------------------------------
     // *** FUNCTIONS ***
 
+    /// -------------------------------------------
+    /// 
+    ///     Startup
+    /// 
+    /// -------------------------------------------
+     
     private void Awake() {
      
         // Destroy old singleton if it doesnt match THIS instance
@@ -146,8 +147,14 @@ public class GameManager : MonoBehaviour
         _ActivePickups = new List<Pickup>();
         _PendingPickups = new List<Pickup>();
     }
-	
-	private void Update () {
+
+    /// -------------------------------------------
+    /// 
+    ///     Update
+    /// 
+    /// -------------------------------------------
+
+    private void Update () {
 
         // Update AI pending states
         foreach (var pendingEnemy in _PendingEnemies) {
@@ -167,7 +174,13 @@ public class GameManager : MonoBehaviour
             activeEnemy._CurrentState = Enemy.State.Active;
         }
     }
-
+    
+    /// -------------------------------------------
+    /// 
+    ///     Projectiles
+    /// 
+    /// -------------------------------------------
+    
     public Projectile GetProjectile(Character.TEAM team) {
 
         // Get pending projectile from player pool
@@ -249,6 +262,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// -------------------------------------------
+    /// 
+    ///     Enemies
+    /// 
+    /// -------------------------------------------
+
     public List<Enemy> GetEnemies(Enemy.EnemyType type, int amount) {
 
         // Make empty list
@@ -285,6 +304,12 @@ public class GameManager : MonoBehaviour
         // Return list of enemies to use
         return list;
     }
+
+    /// -------------------------------------------
+    /// 
+    ///     Pickups
+    /// 
+    /// -------------------------------------------
 
     public Pickup GetPickup() {
 
