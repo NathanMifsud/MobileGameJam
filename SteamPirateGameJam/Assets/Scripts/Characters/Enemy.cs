@@ -8,6 +8,10 @@ public class Enemy : Character {
     // *** VARIABLES ***
 
     public enum State { Pending, Availiable, Active }
+    public enum EnemyType { Creatures, SmallBoat, BigBoat }
+
+    [Header("Type")]
+    public EnemyType _EnemyType;
 
     [Header("Spawning")]
     public float _InitialSpawnDelay;
@@ -37,6 +41,9 @@ public class Enemy : Character {
 
         // Get component references
         _Pathfinding = GetComponent<FollowPath>();
+
+        // Set team
+        _team = TEAM.ENEMY;
 	}
 
     protected override void Update () {
@@ -68,12 +75,6 @@ public class Enemy : Character {
                 }
             }
         }
-
-        // Continuously stream fire
-        if (_CanFire) {
-
-            OnFire();
-        }
     }
 
     private void OnSpawn() {
@@ -103,12 +104,15 @@ public class Enemy : Character {
         }
     }
 
-    public override void OnFire() {
-        
-        // Reset firing delay
-        base.OnFire();
+    public override void FireProjectile() {
 
+        // Get projectile to fire
+        Projectile proj = GameManager._Instance.GetProjectile(TEAM.ENEMY);
 
+        // Fire projectile
+
+        // Move to active pool
+        GameManager._Instance.OnProjectileFired(proj);
     }
 
 }

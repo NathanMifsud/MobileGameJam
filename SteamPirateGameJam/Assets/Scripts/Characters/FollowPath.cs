@@ -19,7 +19,7 @@ public class FollowPath : MonoBehaviour {
     //----------------------------------------------------------------------------------
     // *** FUNCTIONS ***
 
-    private void Start () {
+    private void Start() {
 
         // Get component references
         _Agent = GetComponent<Enemy>();
@@ -27,8 +27,15 @@ public class FollowPath : MonoBehaviour {
         _TargetsLength = _TargetPoints.Count;
 
         // Initial target point is the first in the transform array
-        _ArrayPosition = 0;
-        _TargetTransform = _TargetPoints[_ArrayPosition];
+        if (_TargetPoints.Count > 0) {
+
+            _ArrayPosition = 0;
+            _TargetTransform = _TargetPoints[_ArrayPosition];
+        }
+        else {
+
+            _TargetTransform.position += Vector3.down;
+        }
     }
 
     private void Update () {
