@@ -10,22 +10,23 @@ public class Character : MonoBehaviour
     [HideInInspector]
     public TEAM _team;
 
-    public float m_health = 1;
+    public float _health = 1;
     [SerializeField]
-    protected float m_currentHealth = 1;    
+    protected float _currentHealth = 1;    
 
     [Header("Firing Delay")]
-    public float m_baseFireDelay = 1;
+    public float _baseFireDelay = 1;
+    public float _currentFireDelay = 1;
     private float _CurrentFiringDelay = 0f;
-    protected bool _CanFire;
 
     [Header("OnDeath")]
-    public GameObject m_deathEffect = null;
+    public GameObject _deathEffect = null;
 
     // Use this for initialization
     protected virtual void Start ()
     {
-        m_currentHealth = m_health;
+        _currentHealth = _health;
+        _currentFireDelay = _baseFireDelay;
     }
 
     // Update is called once per frame
@@ -42,27 +43,27 @@ public class Character : MonoBehaviour
         if(_CurrentFiringDelay <= 0f)
         {
             FireProjectile();
-            _CurrentFiringDelay = m_baseFireDelay;
+            _CurrentFiringDelay = _currentFireDelay;
         }
  
     }
 
     private bool IsDead()
     {
-        return m_currentHealth <= 0;
+        return _currentHealth <= 0;
     }
 
     public virtual void OnDeath()
     {
-        if(m_deathEffect!=null) // Create death effect
+        if(_deathEffect != null) // Create death effect
         {
-            Destroy(Instantiate(m_deathEffect, transform.position, Quaternion.identity), 5.0f);
+            Destroy(Instantiate(_deathEffect, transform.position, Quaternion.identity), 5.0f);
         }
     }
 
     public void TakeDamage(float damage)
     {
-        m_currentHealth -= damage;
+        _currentHealth -= damage;
     }
 
     public virtual void FireProjectile()

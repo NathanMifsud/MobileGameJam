@@ -8,6 +8,7 @@ public class Player : Character {
     [SerializeField]
     private float _movementSpeed = 1;
 
+    [Header("Play Area")]
     [SerializeField]
     private float _yOffset = 0.1f;
 
@@ -19,6 +20,18 @@ public class Player : Character {
     private Vector3 _playAreaMin;
     private Vector3 _playAreaMax;
 
+    enum WEAPON { BASIC, SPREAD }
+    private WEAPON _weapon = WEAPON.BASIC;
+
+    [Header("PickupBoosts")]
+    //Boosts
+    public int _speedBonus = 1;
+    public int _addHealthAmount = 1;
+    [Tooltip("This is percent reduction from previous firing delay, e.g. 0.9 = base firing delay * 0.9 = 0.9seconds")]
+    public float _reduceFiringDelay = 0.9f;
+
+    private int _currentSpeedBonus = 1;
+
     private Rigidbody _rb = null;
     // Use this for initialization
     protected override void Start()
@@ -26,6 +39,7 @@ public class Player : Character {
         base.Update();
 
         _team = TEAM.PLAYER;
+
 
         Camera mainCamera = Camera.main;
         _playAreaMin = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, transform.position.z - mainCamera.transform.position.z));
@@ -50,6 +64,8 @@ public class Player : Character {
     {
         Vector3 position = transform.position;
 
+        float speed = _movementSpeed + _currentSpeedBonus;
+
         position.x += CrossPlatformInputManager.GetAxisRaw("Horizontal");
         position.y += CrossPlatformInputManager.GetAxisRaw("Vertical");
 
@@ -73,17 +89,47 @@ public class Player : Character {
         switch (pickupType)
         {
             case Pickup.PickupType.Shotgun:
+                _weapon = WEAPON.SPREAD;
                 break;
 
             case Pickup.PickupType.RapidFire:
+                _currentFireDelay *= _reduceFiringDelay;
                 break;
 
             case Pickup.PickupType.SpeedBoost:
+                _currentSpeedBonus++;
                 break;
 
             case Pickup.PickupType.Healthpack:
+                _currentHealth += _addHealthAmount;
                 break;
 
+            default:
+                break;
+        }
+    }
+
+    public override void FireProjectile()
+    {
+        Projectile projectile = null;
+        switch (_weapon)
+        {
+            case WEAPON.BASIC:
+                projectile = GameManager._Instance.GetProjectile();
+                if (projectile != null)
+                    projectile.transform.rotation = transform.rotation;
+                break;
+            case WEAPON.SPREAD:
+                projectile = GameManager._Instance.GetProjectile();
+                if (projectile != null)
+                    projectile.transform.rotation = transform.rotation * Quaternion.Euler(0,30,0);
+                projectile = GameManager._Instance.GetProjectile();
+                if (projectile != null)
+                    projectile.transform.rotation = transform.rotation;
+                projectile = GameManager._Instance.GetProjectile();
+                if (projectile != null)
+                    projectile.transform.rotation = transform.rotation * Quaternion.Euler(0, -30, 0);
+                break;
             default:
                 break;
         }
