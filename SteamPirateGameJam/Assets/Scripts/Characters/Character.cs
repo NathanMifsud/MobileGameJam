@@ -17,14 +17,14 @@ public class Character : MonoBehaviour
     private GameManager m_gameManager = null;
 
     // Use this for initialization
-    void Start ()
+    protected virtual void Start ()
     {
         m_currentHealth = m_health;
         //TODO grab gamemanger instance
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    protected virtual void Update ()
     {
 		if(IsDead())
         {
@@ -37,7 +37,7 @@ public class Character : MonoBehaviour
         return m_currentHealth < 0;
     }
 
-    private void OnDeath()
+    protected virtual void OnDeath()
     {
         if(m_deathEffect!=null) // Create death effect
         {
