@@ -17,4 +17,25 @@ public class Player : Character {
         if (CrossPlatformInputManager.GetAxis("Horizontal") < 0)
             Debug.Log("AA");
 	}
+
+    public void OnItemPickup(Pickup.PickupType pickupType)
+    {
+        switch (pickupType)
+        {
+            case Pickup.PickupType.Shotgun:
+                break;
+
+            case Pickup.PickupType.RapidFire:
+                break;
+
+            case Pickup.PickupType.SpeedBoost:
+                break;
+
+            case Pickup.PickupType.Healthpack:
+                break;
+
+            default:
+                break;
+        }
+    }
 }
