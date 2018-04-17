@@ -19,7 +19,7 @@ public class Character : MonoBehaviour
     [Header("Firing Delay")]
     public float _baseFireDelay = 1;
     public float _currentFireDelay = 1;
-    private float _CurrentFiringDelay = 0f;
+    private float _FiringTimer = 0f;
 
     // Use this for initialization
     protected virtual void Start ()
@@ -37,12 +37,12 @@ public class Character : MonoBehaviour
         }
 
         // Update firing delay
-        _CurrentFiringDelay -= Time.deltaTime;
+        _FiringTimer -= Time.deltaTime;
 
-        if(_CurrentFiringDelay <= 0f)
+        if(_FiringTimer <= 0f)
         {
             FireProjectile();
-            _CurrentFiringDelay = _currentFireDelay;
+            _FiringTimer = _currentFireDelay;
         }
  
     }

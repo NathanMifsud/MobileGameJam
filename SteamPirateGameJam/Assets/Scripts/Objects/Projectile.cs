@@ -11,7 +11,6 @@ public class Projectile : MonoBehaviour
     public float _damage = 1;
     public float _projectileSpeed = 1;
 
-    [HideInInspector]
     public Character.TEAM _team;
 
     [Header("OnCharacterHit")]
