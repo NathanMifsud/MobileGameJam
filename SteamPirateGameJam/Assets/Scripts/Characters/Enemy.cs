@@ -112,17 +112,20 @@ public class Enemy : Character {
     }
 
     public override void FireProjectile() {
-        //Fire randomly downwards
         if(_FiringTarget==null)
         {
-            if (_AreaBounds = null)
+            if (_AreaBounds = null) // Check if shooting towards general area
             {
                 Vector3 firingTowards = _AreaBounds.transform.position;
                 firingTowards.x += Random.Range(-_AreaBoundsExtents.x, _AreaBoundsExtents.x);
                 SpawnBullet(transform.position, Quaternion.Euler(firingTowards - transform.position));
             }
+            else // default action shoot stright down
+            {
+                SpawnBullet(transform.position, Quaternion.Euler(Vector3.down));
+            }
         }
-        else
+        else // Shoot towards target
         {
             SpawnBullet(transform.position, Quaternion.Euler(_FiringTarget.transform.position - transform.position));
         }

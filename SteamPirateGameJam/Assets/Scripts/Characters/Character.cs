@@ -70,11 +70,24 @@ public class Character : MonoBehaviour
     {
 
     }
+
+    /// -------------------------------------------
+    /// 
+    ///     Defualt Firing
+    ///     Using default sound no offset in rotation
+    ///     
+    /// -------------------------------------------
     protected void SpawnBullet(Vector3 position, Quaternion facingDir)
     {
         SpawnBullet(position, facingDir, 0);
     }
 
+    /// -------------------------------------------
+    /// 
+    ///     Defualt Firing
+    ///     Using default sound, offset in rotation
+    ///     
+    /// -------------------------------------------
     protected void SpawnBullet(Vector3 position, Quaternion facingDir, float rotationOffset)
     {
         Projectile projectile = GameManager._Instance.GetProjectile(_team);
@@ -85,5 +98,36 @@ public class Character : MonoBehaviour
         }
         // Move to active pool
         GameManager._Instance.OnProjectileFired(projectile);
+
+        SoundManager._Instance.PlayFireProjectileDefault(0.9f, 1.1f);
+    }
+
+    /// -------------------------------------------
+    /// 
+    ///     Defualt Firing
+    ///     Using character passed in determine what sound to play
+    ///     
+    /// -------------------------------------------
+    protected void SpawnBullet(Vector3 position, Quaternion facingDir, float rotationOffset, Character character)
+    {
+        Projectile projectile = GameManager._Instance.GetProjectile(_team);
+        if (projectile != null)
+        {
+            projectile.transform.position = position;
+            projectile.transform.rotation = facingDir * Quaternion.Euler(0, rotationOffset, 0);
+        }
+        // Move to active pool
+        GameManager._Instance.OnProjectileFired(projectile);
+
+        //Determine sound to play
+        if(character._team == TEAM.ENEMY)
+            SoundManager._Instance.PlayFireProjectileDefault(0.9f, 1.1f);
+        else
+        {
+            if (character.GetComponent<Player>()._HasPickupRapidFire)
+                SoundManager._Instance.PlayPickupRapidFire(0.9f, 1.1f);
+            else
+                SoundManager._Instance.PlayFireProjectileDefault(0.9f, 1.1f);
+        }
     }
 }

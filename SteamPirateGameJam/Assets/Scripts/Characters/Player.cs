@@ -24,7 +24,7 @@ public class Player : Character {
     private Vector3 _playAreaMin;
     private Vector3 _playAreaMax;
 
-    enum WEAPON { BASIC, SPREAD }
+    private enum WEAPON { BASIC, SPREAD }
     private WEAPON _weapon = WEAPON.BASIC;
 
     [Header("Pickups")]
@@ -33,7 +33,8 @@ public class Player : Character {
     public int _addHealthAmount = 1;
     private bool _HasPickupSpeedboost = false;
     private float _PickupTimerSpeedboost = 0f;
-    private bool _HasPickupRapidFire = false;
+    [HideInInspector]
+    public bool _HasPickupRapidFire = false;
     private float _PickupTimerRapidFire = 0f;
     private bool _HasPickupSpread = false;
     private float _PickupTimerSpread = 0f;
@@ -212,38 +213,22 @@ public class Player : Character {
             // Default firemode
             case WEAPON.BASIC:
 
-                projectile = GameManager._Instance.GetProjectile(_team);
-
-                if (projectile != null)
-                    projectile.transform.rotation = transform.rotation;
-
-                // Play sound
-                if (_HasPickupRapidFire)
-                    SoundManager._Instance.PlayPickupRapidFire(0.9f, 1.1f);
-                else
-                    SoundManager._Instance.PlayFireProjectileDefault(0.9f, 1.1f);
-                break;
+                SpawnBullet(transform.position, transform.rotation, 0, this);
 
             // Spread firemode
             case WEAPON.SPREAD:
 
                 // Projectile 1
-                projectile = GameManager._Instance.GetProjectile(_team);
-                if (projectile != null)
-                    projectile.transform.rotation = transform.rotation * Quaternion.Euler(0,30,0);
+                SpawnBullet(transform.position, transform.rotation, 30, this);
 
                 // Projectile 2
-                projectile = GameManager._Instance.GetProjectile(_team);
-                if (projectile != null)
-                    projectile.transform.rotation = transform.rotation;
+                SpawnBullet(transform.position, transform.rotation, 0, this);
 
                 // Projectile 3
-                projectile = GameManager._Instance.GetProjectile(_team);
-                if (projectile != null)
-                    projectile.transform.rotation = transform.rotation * Quaternion.Euler(0, -30, 0);
+                SpawnBullet(transform.position, transform.rotation, -30, this);
 
                 // Play sound
-                SoundManager._Instance.PlayPickupSpread(0.9f, 1.1f);
+                SoundManager._Instance.PlayPickupSpread(0.9f, 1.1f, this);
                 break;
 
             default: break;
