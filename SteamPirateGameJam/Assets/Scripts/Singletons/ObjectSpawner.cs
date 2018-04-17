@@ -101,8 +101,6 @@ public class ObjectSpawner : MonoBehaviour
                 enemy.transform.position = position;
             }
         }
-        Debug.Log(_playAreaMin);
-        Debug.Log(_playAreaMax);
         Invoke("SpawnEnemies", Random.Range(_minEnemySpawnTime, _maxEnemySpawnTime));
     }
 }
