@@ -5,6 +5,10 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : Character {
 
+    //----------------------------------------------------------------------------------
+    // *** VARIABLES ***
+
+    [Header("Movement")]
     [SerializeField]
     private float _movementSpeed = 1;
 
@@ -23,23 +27,39 @@ public class Player : Character {
     enum WEAPON { BASIC, SPREAD }
     private WEAPON _weapon = WEAPON.BASIC;
 
-    [Header("PickupBoosts")]
-    //Boosts
+    [Header("Pickups")]
+    public float _PickupDuration = 5f;
     public int _speedBonus = 1;
     public int _addHealthAmount = 1;
+    private bool _HasPickupSpeedboost = false;
+    private float _PickupTimerSpeedboost = 0f;
+    private bool _HasPickupRapidFire = false;
+    private float _PickupTimerRapidFire = 0f;
+    private bool _HasPickupSpread = false;
+    private float _PickupTimerSpread = 0f;
+
+    [Header("THIS HAS A TOOLTIP - READ IT!")]
     [Tooltip("This is percent reduction from previous firing delay, e.g. 0.9 = base firing delay * 0.9 = 0.9seconds")]
     public float _reduceFiringDelay = 0.9f;
 
     private int _currentSpeedBonus = 1;
 
     private Rigidbody _rb = null;
-    // Use this for initialization
+
+    //----------------------------------------------------------------------------------
+    // *** FUNCTIONS ***
+
+    /// -------------------------------------------
+    /// 
+    ///     Startup
+    /// 
+    /// -------------------------------------------
+
     protected override void Start()
     {
         base.Update();
 
         _team = TEAM.PLAYER;
-
 
         Camera mainCamera = Camera.main;
         _playAreaMin = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, transform.position.z - mainCamera.transform.position.z));
@@ -57,10 +77,67 @@ public class Player : Character {
         _playAreaMax.y += _yOffset - yOffset;
 
         _rb = GetComponent<Rigidbody>();
+
+        //-------------------------------
+        /* Update active pickup timers */
+        //-------------------------------
+
+        // Speed boost
+        if (_HasPickupSpeedboost) {
+
+            _PickupTimerSpeedboost += Time.deltaTime;
+
+            // Speed boost pickup has reached duration threshold
+            if (_PickupTimerSpeedboost >= _PickupDuration) {
+
+                _HasPickupSpeedboost = false;
+            }
+        }
+
+        // Speed boost has ended / not active
+        else { _currentSpeedBonus = 0; }
+
+        // Rapid fire timer
+        if (_HasPickupRapidFire)
+        {
+
+            _PickupTimerRapidFire += Time.deltaTime;
+
+            // Speed boost pickup has reached duration threshold
+            if (_PickupTimerRapidFire >= _PickupDuration)
+            {
+
+                _HasPickupRapidFire = false;
+            }
+        }
+
+        // Rapid fire has ended / not active
+        else { _currentFireDelay = _baseFireDelay; }
+
+        // Spread fire timer
+        if (_HasPickupSpread) {
+
+            _PickupTimerSpread += Time.deltaTime;
+
+            // Speed boost pickup has reached duration threshold
+            if (_PickupTimerSpread >= _PickupDuration) {
+
+                _HasPickupSpread = false;
+            }
+        }
+
+        // Spread fire has ended / not active
+        else { _weapon = WEAPON.BASIC; }
+
     }
-	
-	// Update is called once per frame
-	void FixedUpdate ()
+
+    /// -------------------------------------------
+    /// 
+    ///     Update
+    /// 
+    /// -------------------------------------------
+
+    void FixedUpdate ()
     {
         Vector3 position = transform.position;
 
@@ -84,54 +161,93 @@ public class Player : Character {
         transform.position = position;
     }
 
+    /// -------------------------------------------
+    /// 
+    ///     Pickups
+    /// 
+    /// -------------------------------------------
+
     public void OnItemPickup(Pickup.PickupType pickupType)
     {
         switch (pickupType)
         {
-            case Pickup.PickupType.Shotgun:
+            // Spread fire
+            case Pickup.PickupType.Spread:
                 _weapon = WEAPON.SPREAD;
+                _HasPickupSpread = true;
                 break;
 
+            // Rapid fire
             case Pickup.PickupType.RapidFire:
                 _currentFireDelay *= _reduceFiringDelay;
+                _HasPickupRapidFire = true;
                 break;
 
+            // Speed boost
             case Pickup.PickupType.SpeedBoost:
-                _currentSpeedBonus++;
+                _currentSpeedBonus += _speedBonus;
+                _HasPickupSpeedboost = true;
                 break;
-
+            
+            // Health pack
             case Pickup.PickupType.Healthpack:
                 _currentHealth += _addHealthAmount;
                 break;
 
-            default:
-                break;
+            default: break;
         }
     }
+
+    /// -------------------------------------------
+    /// 
+    ///     Firing
+    /// 
+    /// -------------------------------------------
 
     public override void FireProjectile()
     {
         Projectile projectile = null;
         switch (_weapon)
         {
+            // Default firemode
             case WEAPON.BASIC:
+
                 projectile = GameManager._Instance.GetProjectile(_team);
+
                 if (projectile != null)
                     projectile.transform.rotation = transform.rotation;
+
+                // Play sound
+                if (_HasPickupRapidFire)
+                    SoundManager._Instance.PlayPickupRapidFire(0.9f, 1.1f);
+                else
+                    SoundManager._Instance.PlayFireProjectileDefault(0.9f, 1.1f);
                 break;
+
+            // Spread firemode
             case WEAPON.SPREAD:
+
+                // Projectile 1
                 projectile = GameManager._Instance.GetProjectile(_team);
                 if (projectile != null)
                     projectile.transform.rotation = transform.rotation * Quaternion.Euler(0,30,0);
+
+                // Projectile 2
                 projectile = GameManager._Instance.GetProjectile(_team);
                 if (projectile != null)
                     projectile.transform.rotation = transform.rotation;
+
+                // Projectile 3
                 projectile = GameManager._Instance.GetProjectile(_team);
                 if (projectile != null)
                     projectile.transform.rotation = transform.rotation * Quaternion.Euler(0, -30, 0);
+
+                // Play sound
+                SoundManager._Instance.PlayPickupSpread(0.9f, 1.1f);
                 break;
-            default:
-                break;
+
+            default: break;
         }
     }
+
 }

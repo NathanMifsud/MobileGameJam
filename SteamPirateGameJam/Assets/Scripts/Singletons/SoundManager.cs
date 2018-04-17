@@ -288,7 +288,7 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
-    public void PlayFireProjectileMinigun(float pitchMin, float pitchMax) {
+    public void PlayFireProjectileRapidFire(float pitchMin, float pitchMax) {
 
         // Precautions
         if (_SFX_OnFireProjectileRapidFire.Count > 0) {
@@ -339,7 +339,7 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
-    public void PlayPickupShotgun(float pitchMin, float pitchMax) {
+    public void PlayPickupSpread(float pitchMin, float pitchMax) {
 
         // Precautions
         if (_SFX_OnPickupSpread.Count > 0) {

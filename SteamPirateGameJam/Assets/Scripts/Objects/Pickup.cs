@@ -66,7 +66,7 @@ public class Pickup : MonoBehaviour {
             switch (_PickupType) {
 
                 case PickupType.Spread:
-                    SoundManager._Instance.PlayPickupShotgun(0.9f, 1.1f);
+                    SoundManager._Instance.PlayPickupSpread(0.9f, 1.1f);
                     break;
 
                 case PickupType.RapidFire:
