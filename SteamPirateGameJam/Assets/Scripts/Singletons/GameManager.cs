@@ -367,8 +367,8 @@ public class GameManager : MonoBehaviour
     public void SetPause(bool value) {
 
         // Pause time based on value
-        if (value == true) { Time.timeScale = 0f; }
-        else               { Time.timeScale = 1f; }
+        if      (value == true)     { Time.timeScale = 0f; }
+        else /* (value == false) */ { Time.timeScale = 1f; }
     }
 
 }

@@ -78,12 +78,9 @@ public class FollowPath : MonoBehaviour {
 
             // Hasnt reached target yet
             else {
-
-                // Look at current target's position
-                ///_Agent.transform.LookAt(_TargetTransform);
-
-                Vector3 dir = _TargetTransform.position - transform.position;
+                
                 // Rotate towards target position
+                Vector3 dir = _TargetTransform.position - transform.position;
                 _Agent.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.position, dir, _MaxRotationDelta * Time.deltaTime, _MaxMagnitudeDelta));
 
                 // Move towards last known facing direction

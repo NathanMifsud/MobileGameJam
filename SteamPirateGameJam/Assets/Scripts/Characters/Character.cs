@@ -16,7 +16,9 @@ public class Character : MonoBehaviour
     protected float _currentHealth = 1;
     public GameObject _deathEffect = null;
 
-    [Header("Firing Delay")]
+    [Header("Firing")]
+    public GameObject _FiringEffect = null;
+    public Vector3 _MuzzleLaunchPoint;
     public float _baseFireDelay = 1;
     public float _currentFireDelay = 1;
     private float _CurrentFiringDelay = 0f;
@@ -128,6 +130,11 @@ public class Character : MonoBehaviour
                     SoundManager._Instance.PlayPickupRapidFire(0.9f, 1.1f);
                 else
                     SoundManager._Instance.PlayFireProjectileDefault(0.9f, 1.1f);
+
+                if (_deathEffect != null) // Create death effect
+                {
+                    Destroy(Instantiate(_FiringEffect, _MuzzleLaunchPoint, transform.rotation), 5.0f);
+                }
             }
         }
     }
