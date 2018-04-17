@@ -207,14 +207,13 @@ public class Player : Character {
 
     public override void FireProjectile()
     {
-        Projectile projectile = null;
         switch (_weapon)
         {
             // Default firemode
             case WEAPON.BASIC:
 
                 SpawnBullet(transform.position, transform.rotation, 0, this);
-
+                break;
             // Spread firemode
             case WEAPON.SPREAD:
 
@@ -226,9 +225,6 @@ public class Player : Character {
 
                 // Projectile 3
                 SpawnBullet(transform.position, transform.rotation, -30, this);
-
-                // Play sound
-                SoundManager._Instance.PlayPickupSpread(0.9f, 1.1f, this);
                 break;
 
             default: break;
