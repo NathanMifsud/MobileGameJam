@@ -30,8 +30,7 @@ public class GameManager : MonoBehaviour
     public Player _Player;
     
     [Header("Projectiles")]
-    public GameObject _PlayerProjectile;
-    public GameObject _EnemyProjectile;
+    public GameObject _Projectile;
     [HideInInspector]
     public List<Projectile> _PlayerProjectiles = new List<Projectile>();
     [HideInInspector]
@@ -100,12 +99,19 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < _POOL_SIZE_PLAYER_PROJECTILES; i++) {
 
             // Create game object
-            Instantiate(_PlayerProjectile, transform.position, Quaternion.identity);
+            GameObject proj =  Instantiate(_Projectile, transform.position, Quaternion.identity);
+            Projectile projectileScript = proj.GetComponent<Projectile>();
+            projectileScript._team = Character.TEAM.PLAYER;
+            _PlayerProjectiles.Add(projectileScript);
         }
+
         for (int i = 0; i < _POOL_SIZE_ENEMY_PROJECTILES; i++) {
 
             // Create game object
-            Instantiate(_EnemyProjectile, transform.position, Quaternion.identity);
+            GameObject proj = Instantiate(_Projectile, transform.position, Quaternion.identity);
+            Projectile projectileScript = proj.GetComponent<Projectile>();
+            projectileScript._team = Character.TEAM.ENEMY;
+            _EnemyProjectiles.Add(projectileScript);
         }
 
         // Create projectile object lists
@@ -115,26 +121,6 @@ public class GameManager : MonoBehaviour
         _PendingEnemyProjectiles = new List<Projectile>();
         _ActivePlayerProjectiles = new List<Projectile>();
         _ActiveEnemyProjectiles = new List<Projectile>();
-
-        // Get all projectiles for object pooling
-        foreach (var obj in GameObject.FindGameObjectsWithTag("Projectile")) {
-
-            Projectile proj = obj.GetComponent<Projectile>();
-            if (proj._team == Character.TEAM.PLAYER) {
-
-                // Add to player projectile object pool
-                _PlayerProjectiles.Add(proj);
-            }
-            else {
-                
-                // Add to enemy projectile object pool
-                _EnemyProjectiles.Add(proj);
-            }
-
-            // All projectiles are now pending for use
-            _PendingPlayerProjectiles = _PlayerProjectiles;
-            _PendingEnemyProjectiles = _EnemyProjectiles;
-        }
 
         // Create pickup object lists
         _AllPickups = new List<Pickup>();
