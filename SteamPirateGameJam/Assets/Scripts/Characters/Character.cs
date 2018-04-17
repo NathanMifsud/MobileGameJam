@@ -83,5 +83,7 @@ public class Character : MonoBehaviour
             projectile.transform.position = position;
             projectile.transform.rotation = facingDir * Quaternion.Euler(0, rotationOffset, 0);
         }
+        // Move to active pool
+        GameManager._Instance.OnProjectileFired(projectile);
     }
 }

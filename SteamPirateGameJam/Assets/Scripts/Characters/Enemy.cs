@@ -32,6 +32,7 @@ public class Enemy : Character {
     public GameObject _FiringTarget;
     public bool _FindRandomTargetWithinArea;
     public GameObject _AreaBounds;
+    private Vector3 _AreaBoundsExtents;
 
     //----------------------------------------------------------------------------------
     // *** FUNCTIONS ***
@@ -45,6 +46,11 @@ public class Enemy : Character {
 
         // Set team
         _team = TEAM.ENEMY;
+
+        if(_AreaBounds!=null)
+        {
+            _AreaBoundsExtents = _AreaBounds.GetComponent<Collider>().bounds.extents;
+        }
 	}
 
     protected override void Update () {
@@ -106,14 +112,20 @@ public class Enemy : Character {
     }
 
     public override void FireProjectile() {
-
-        // Get projectile to fire
-        Projectile proj = GameManager._Instance.GetProjectile(TEAM.ENEMY);
-
-        // Fire projectile
-
-        // Move to active pool
-        GameManager._Instance.OnProjectileFired(proj);
+        //Fire randomly downwards
+        if(_FiringTarget==null)
+        {
+            if (_AreaBounds = null)
+            {
+                Vector3 firingTowards = _AreaBounds.transform.position;
+                firingTowards.x += Random.Range(-_AreaBoundsExtents.x, _AreaBoundsExtents.x);
+                SpawnBullet(transform.position, Quaternion.Euler(firingTowards - transform.position));
+            }
+        }
+        else
+        {
+            SpawnBullet(transform.position, Quaternion.Euler(_FiringTarget.transform.position - transform.position));
+        }
     }
 
 }
