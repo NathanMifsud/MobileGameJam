@@ -117,6 +117,10 @@ public class GameManager : MonoBehaviour
         // Create projectile object lists
         _PlayerProjectiles = new List<Projectile>();
         _EnemyProjectiles = new List<Projectile>();
+        _PendingPlayerProjectiles = new List<Projectile>();
+        _PendingEnemyProjectiles = new List<Projectile>();
+        _ActivePlayerProjectiles = new List<Projectile>();
+        _ActiveEnemyProjectiles = new List<Projectile>();
 
         // Get all projectiles for object pooling
         foreach (var obj in GameObject.FindGameObjectsWithTag("Projectile")) {
@@ -132,6 +136,10 @@ public class GameManager : MonoBehaviour
                 // Add to enemy projectile object pool
                 _EnemyProjectiles.Add(proj);
             }
+
+            // All projectiles are now pending for use
+            _PendingPlayerProjectiles = _PlayerProjectiles;
+            _PendingEnemyProjectiles = _EnemyProjectiles;
         }
 
         // Create pickup object lists
@@ -222,20 +230,12 @@ public class GameManager : MonoBehaviour
     public void OnProjectileDestroyed(Projectile proj) {
 
         // Player team projectiles
-        if (proj._team == Character.TEAM.PLAYER) {
+        if (proj._team == Character.TEAM.PLAYER)
+        {
 
-            // Move to object pool
-            foreach (var plyrProj in _ActivePlayerProjectiles) {
-
-                // We have found the projectile
-                if (proj == plyrProj) {
-
-                    // Move to pending array
-                    _PendingPlayerProjectiles.Add(plyrProj);
-                    _ActivePlayerProjectiles.Remove(plyrProj);
-                }
-            }
-
+            // Move to pending array
+            _PendingPlayerProjectiles.Add(proj);
+            _ActivePlayerProjectiles.Remove(proj);
             // Play sound
             SoundManager._Instance.PlayPlayerProjectileImpact(0.9f, 1.1f);
         }
@@ -243,17 +243,9 @@ public class GameManager : MonoBehaviour
         // Enemy team projectiles
         else {
 
-            // Move to object pool
-            foreach (var enemyProj in _ActiveEnemyProjectiles)  {
-
-                // We have found the projectile
-                if (proj == enemyProj) {
-
-                    // Move to pending array
-                    _PendingEnemyProjectiles.Add(enemyProj);
-                    _ActiveEnemyProjectiles.Remove(enemyProj);
-                }
-            }
+            // Move to pending array
+            _PendingEnemyProjectiles.Add(proj);
+            _ActiveEnemyProjectiles.Remove(proj);
 
             // Play sound
             SoundManager._Instance.PlayEnemyProjectileImpact(0.9f, 1.1f);
