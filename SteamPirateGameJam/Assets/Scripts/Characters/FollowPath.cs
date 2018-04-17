@@ -92,7 +92,7 @@ public class FollowPath : MonoBehaviour {
 
                 // Move towards last known facing direction
                 float speed = _Agent._MovementSpeed * Time.deltaTime;
-                _Agent.transform.Translate(Vector3.forward * speed);
+                _Agent.transform.Translate(Vector3.back * speed);
             }
         }
 	}
