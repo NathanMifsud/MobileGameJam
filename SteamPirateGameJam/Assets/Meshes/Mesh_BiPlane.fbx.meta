@@ -1,29 +1,22 @@
 fileFormatVersion: 2
-guid: db96c8b8ffa735e438b3e38e8acf741e
-timeCreated: 1523922036
+guid: 171d43b11e3ed2045b1092ba9c30d444
+timeCreated: 1523940503
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: mesh_Airship1
+    100000: Blades
     100002: //RootNode
-    100004: mesh_Propellor
-    100006: mesh_Airship
-    400000: mesh_Airship1
+    400000: Blades
     400002: //RootNode
-    400004: mesh_Propellor
-    400006: mesh_Airship
-    2100000: mat_Ship
-    2300000: mesh_Airship1
-    2300002: mesh_Propellor
-    2300004: mesh_Airship
-    3300000: mesh_Airship1
-    3300002: mesh_Propellor
-    3300004: mesh_Airship
-    4300000: mesh_Propellor
-    4300002: mesh_Airship1
-    4300004: mesh_Airship
-    7400000: Airship1_Flying
+    2100000: BiPlane1
+    2300000: Blades
+    2300002: //RootNode
+    3300000: Blades
+    3300002: //RootNode
+    4300000: BiPlane
+    4300002: Blades
+    7400000: Take 001
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -53,10 +46,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Airship1_Flying
-      takeName: Airship1_Flying
+      name: Take 001
+      takeName: Take 001
       firstFrame: 1
-      lastFrame: 5
+      lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

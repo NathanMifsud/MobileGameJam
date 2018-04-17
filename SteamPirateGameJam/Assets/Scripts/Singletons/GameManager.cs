@@ -358,4 +358,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// -------------------------------------------
+    /// 
+    ///     Pause / Unpause
+    /// 
+    /// -------------------------------------------
+
+    public void SetPause(bool value) {
+
+        // Pause time based on value
+        if (value == true) { Time.timeScale = 0f; }
+        else               { Time.timeScale = 1f; }
+    }
+
 }
