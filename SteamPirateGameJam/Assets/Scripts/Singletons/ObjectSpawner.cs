@@ -39,7 +39,7 @@ public class ObjectSpawner : MonoBehaviour
         _playAreaMin = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, transform.position.z - mainCamera.transform.position.z));
         _playAreaMax = Camera.main.ScreenToWorldPoint(new Vector3(mainCamera.pixelWidth, mainCamera.pixelHeight, transform.position.z - mainCamera.transform.position.z));
 
-        //Invoke("SpawnPickup", Random.Range(_minPickupSpawnTime, _maxPickupSpawnTime));
+        Invoke("SpawnPickup", Random.Range(_minPickupSpawnTime, _maxPickupSpawnTime));
         Invoke("SpawnEnemies", Random.Range(_minEnemySpawnTime, _maxEnemySpawnTime));
     }
 
@@ -52,10 +52,12 @@ public class ObjectSpawner : MonoBehaviour
         //Random x pos in range of screen;
         position.x = Random.Range(_playAreaMin.x, _playAreaMax.x);
 
-        //Starting Y just above play area;
-        position.y = _playAreaMax.y + 1;
+        //Starting Z just above play area;
+        position.z = _playAreaMax.z + 1;
 
         pickup.transform.position = position;
+
+        GameManager._Instance.OnPickupSpawn(pickup);
 
         Invoke("SpawnPickup", Random.Range(_minPickupSpawnTime, _maxPickupSpawnTime));
     }
@@ -94,12 +96,11 @@ public class ObjectSpawner : MonoBehaviour
                 position.x = Random.Range(_playAreaMin.x, _playAreaMax.x);
 
                 //Starting Y just above play area;
-                position.y = _playAreaMax.y + 1;
+                position.z = _playAreaMax.z + 1;
 
                 enemy.transform.position = position;
             }
         }
-
         Invoke("SpawnEnemies", Random.Range(_minEnemySpawnTime, _maxEnemySpawnTime));
     }
 }
