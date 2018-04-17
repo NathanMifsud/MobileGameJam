@@ -37,11 +37,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4751700696654392}
   - component: {fileID: 95480367993844068}
-  - component: {fileID: 114211332323661216}
   - component: {fileID: 114061783842664768}
   m_Layer: 0
   m_Name: ship_myles_cannonshoot_anim
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,7 +117,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1086400969107502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 71.399994}
+  m_LocalPosition: {x: 136.44852, y: 118.382355, z: -47.1922}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4751700696654392}
@@ -344,6 +343,7 @@ MonoBehaviour:
   _TargetThreshold: 5
   _MaxRotationDelta: 1
   _MaxMagnitudeDelta: 0
+<<<<<<< HEAD
 --- !u!114 &114211332323661216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -372,6 +372,8 @@ MonoBehaviour:
   _FiringTarget: {fileID: 0}
   _FindRandomTargetWithinArea: 0
   _AreaBounds: {fileID: 0}
+=======
+>>>>>>> a07723aa0e1620447f6cd3d7db47fe102efd1985
 --- !u!114 &114377028530165334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -388,7 +390,11 @@ MonoBehaviour:
   _currentHealth: 1
   _deathEffect: {fileID: 0}
   _FiringEffect: {fileID: 0}
+<<<<<<< HEAD
   _MuzzleLaunchPoint: {x: 0, y: 0, z: 0}
+=======
+  _MuzzleLaunchPoint: {fileID: 0}
+>>>>>>> a07723aa0e1620447f6cd3d7db47fe102efd1985
   _baseFireDelay: 1
   _currentFireDelay: 1
   _EnemyType: 2
@@ -411,12 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bee6570a744d04393aff7050b89e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _TargetPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _TargetPoints: []
   _TargetThreshold: 5
   _MaxRotationDelta: 1000
   _MaxMagnitudeDelta: 0
