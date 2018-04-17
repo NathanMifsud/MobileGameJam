@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     //----------------------------------------------------------------------------------
     // *** VARIABLES ***
 
+    [Header("Properties")]
     public float _damage = 1;
     public float _projectileSpeed = 1;
 
