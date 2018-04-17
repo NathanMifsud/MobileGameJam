@@ -10,8 +10,10 @@ public class ButtonClicks : MonoBehaviour {
     [Header("USER INTERFACE PANELS")]
     public GameObject _UI_MainMenu;
     public GameObject _UI_Credits;
+    public GameObject _UI_ShowMenu;
 
     private bool _ClosingApplication = false;
+    private bool _HelpMenuActive = false;
 
     //----------------------------------------------------------------------------------
     // *** FUNCTIONS ***
@@ -64,6 +66,13 @@ public class ButtonClicks : MonoBehaviour {
         }
     }
 
+    public void OnButtonClick_HelpMenu() {
+
+        // Flip menu state
+        _HelpMenuActive = !_HelpMenuActive;
+        _UI_ShowMenu.SetActive(_HelpMenuActive);
+    }
+    
     public void OnButtonClick_QuitApplication() {
 
         // Fade in then quit application
@@ -71,10 +80,10 @@ public class ButtonClicks : MonoBehaviour {
         _ClosingApplication = true;
     }
 
-    public void OnButtonClick_Resume() {
+    public void OnButtonClick_SetPause(bool value) {
 
-        // Unpause gameplay
-        ///GameManager._Instance.SetPause(false);
+        // Pause / unpause gameplay
+        GameManager._Instance.SetPause(value);
     }
 
     public void OnButtonClick_Restart() {
@@ -82,9 +91,8 @@ public class ButtonClicks : MonoBehaviour {
         // Reload gameplay level
         Loading._Instance.LoadLevel(1);
 
-        // Force reset timescale
-        ///GameManager._Instance.SetPause(false);
-        Time.timeScale = 1f;
+        // Reset timescale
+        GameManager._Instance.SetPause(false);
     }
 
     public void OnButtonClick_Mainmenu() {
@@ -99,9 +107,8 @@ public class ButtonClicks : MonoBehaviour {
         // Load mainmenu level
         Loading._Instance.LoadLevel(0);
 
-        // Force reset timescale
-        ///GameManager._Instance.SetPause(false);
-        Time.timeScale = 1f;
+        // Reset timescale
+        GameManager._Instance.SetPause(false);
     }
 
 }
