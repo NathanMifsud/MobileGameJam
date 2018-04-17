@@ -34,6 +34,8 @@ public class Enemy : Character {
     public GameObject _AreaBounds;
     private Vector3 _AreaBoundsExtents;
 
+    private bool _inGameArea = false;
+
     //----------------------------------------------------------------------------------
     // *** FUNCTIONS ***
 
@@ -66,20 +68,12 @@ public class Enemy : Character {
             _CurrentSpawnTimer += Time.deltaTime;
 
             // Respawn timer has reached threshold
-            if (_CurrentSpawnTimer >= _RespawnDelay) {
+            if (_CurrentSpawnTimer >= _RespawnDelay)
+            {
 
-                // Move agent to the availiable object pool
-                foreach (var agent in GameManager._Instance._PendingEnemies) {
-
-                    // We have found ourself
-                    if (agent == this) {
-
-                        // Move to next pool
-                        GameManager._Instance._AvailiableEnemies.Add(agent);
-                        GameManager._Instance._PendingEnemies.Remove(agent);
-                        break;
-                    }
-                }
+                // Move to next pool
+                GameManager._Instance._AvailiableEnemies.Add(this);
+                GameManager._Instance._PendingEnemies.Remove(this);
             }
         }
     }
@@ -111,8 +105,9 @@ public class Enemy : Character {
         }
     }
 
-    public override void FireProjectile() {
-        if(_FiringTarget==null)
+    public override void FireProjectile()
+    {
+        if (_FiringTarget == null)
         {
             if (_AreaBounds = null) // Check if shooting towards general area
             {
@@ -131,4 +126,22 @@ public class Enemy : Character {
         }
     }
 
+    //Moved onto the screen, so player can see
+    private void OnBecameVisible()
+    {
+        _inGameArea = true;
+    }
+
+    //Moved off screen
+    void OnBecameInvisible()
+    {
+        if (_inGameArea)
+        {
+            _CurrentState = State.Pending;
+            _inGameArea = false;
+
+            GameManager._Instance._PendingEnemies.Add(this);
+            GameManager._Instance._ActiveEnemies.Remove(this);
+        }
+    }
 }

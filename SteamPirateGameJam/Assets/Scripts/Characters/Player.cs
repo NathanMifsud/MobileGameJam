@@ -230,5 +230,4 @@ public class Player : Character {
             default: break;
         }
     }
-
 }

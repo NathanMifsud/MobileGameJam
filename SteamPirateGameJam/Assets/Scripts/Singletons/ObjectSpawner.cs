@@ -39,15 +39,16 @@ public class ObjectSpawner : MonoBehaviour
         _playAreaMin = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, transform.position.z - mainCamera.transform.position.z));
         _playAreaMax = Camera.main.ScreenToWorldPoint(new Vector3(mainCamera.pixelWidth, mainCamera.pixelHeight, transform.position.z - mainCamera.transform.position.z));
 
-        Invoke("SpawnPickup", Random.Range(_minPickupSpawnTime, _maxPickupSpawnTime));
+        //Invoke("SpawnPickup", Random.Range(_minPickupSpawnTime, _maxPickupSpawnTime));
         Invoke("SpawnEnemies", Random.Range(_minEnemySpawnTime, _maxEnemySpawnTime));
     }
 
     public void SpawnPickup()
     {
         Pickup pickup = GameManager._Instance.GetPickup();
-        pickup.gameObject.SetActive(true);
+        //TODO, maybe need to activate pickup.gameObject.SetActive(true);
         Vector3 position = pickup.transform.position;
+
         //Random x pos in range of screen;
         position.x = Random.Range(_playAreaMin.x, _playAreaMax.x);
 
@@ -64,7 +65,7 @@ public class ObjectSpawner : MonoBehaviour
         Enemy.EnemyType randomEnemySelect = (Enemy.EnemyType)Random.Range(0,(int)Enemy.EnemyType.Size);
 
         List<Enemy> enemies = new List<Enemy>();
-        enemies = GameManager._Instance.GetEnemies(randomEnemySelect, 1);
+
         switch (randomEnemySelect)
         {
             case Enemy.EnemyType.Creatures:
