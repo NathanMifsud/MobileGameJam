@@ -46,6 +46,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1475419659989422
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4443423786802812}
+  m_Layer: 0
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1511731438453986
 GameObject:
   m_ObjectHideFlags: 1
@@ -118,12 +133,26 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1086400969107502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 112.59999}
+  m_LocalPosition: {x: 0, y: 0, z: 71.399994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4751700696654392}
+  - {fileID: 4443423786802812}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4443423786802812
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1475419659989422}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.7, y: 0.58, z: 1.5300064}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4262751875176422}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4451860224856720
 Transform:
@@ -342,7 +371,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _TargetThreshold: 5
-  _MaxRotation: 800
+  _MaxRotationDelta: 1
   _MaxMagnitudeDelta: 0
 --- !u!114 &114211332323661216
 MonoBehaviour:
@@ -390,14 +419,14 @@ MonoBehaviour:
   _currentFireDelay: 1
   _EnemyType: 2
   _RespawnDelay: 1
-  _SpawnLocation: {fileID: 4082330559295142, guid: 3c8ab66b83799394fb85d8f26aa889f9,
-    type: 2}
+  _SpawnLocation: {fileID: 4443423786802812}
   _CurrentState: 0
   _MovementSpeed: 20
   _RotationSpeed: 2
   _FiringTarget: {fileID: 0}
   _FindRandomTargetWithinArea: 0
-  _AreaBounds: {fileID: 0}
+  _AreaBounds: {fileID: 1304235731285188, guid: b14fbe847ad2ae345b00a396a0c4a2fb,
+    type: 2}
 --- !u!114 &114986931230069350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -416,5 +445,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _TargetThreshold: 5
-  _MaxRotation: 800
+  _MaxRotationDelta: 1000
   _MaxMagnitudeDelta: 0
