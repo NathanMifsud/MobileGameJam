@@ -52,8 +52,8 @@ public class ObjectSpawner : MonoBehaviour
         //Random x pos in range of screen;
         position.x = Random.Range(_playAreaMin.x, _playAreaMax.x);
 
-        //Starting Y just above play area;
-        position.y = _playAreaMax.y + 1;
+        //Starting Z just above play area;
+        position.z = _playAreaMax.z + 1;
 
         pickup.transform.position = position;
 
@@ -94,12 +94,13 @@ public class ObjectSpawner : MonoBehaviour
                 position.x = Random.Range(_playAreaMin.x, _playAreaMax.x);
 
                 //Starting Y just above play area;
-                position.y = _playAreaMax.y + 1;
+                position.z = _playAreaMax.z + 1;
 
                 enemy.transform.position = position;
             }
         }
-
+        Debug.Log(_playAreaMin);
+        Debug.Log(_playAreaMax);
         Invoke("SpawnEnemies", Random.Range(_minEnemySpawnTime, _maxEnemySpawnTime));
     }
 }

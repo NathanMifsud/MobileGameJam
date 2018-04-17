@@ -52,7 +52,7 @@ public class FollowPath : MonoBehaviour {
         if (_TargetPoints.Count == 0) {
 
             // Continuously move the target position down so that the agent follows the updated path
-            transform.position += Vector3.down * Time.deltaTime;
+            transform.position += -Vector3.forward * _Agent._MovementSpeed * Time.deltaTime;
         }
 
         else  {
