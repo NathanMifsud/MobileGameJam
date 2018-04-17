@@ -18,7 +18,7 @@ public class Character : MonoBehaviour
 
     [Header("Firing")]
     public GameObject _FiringEffect = null;
-    public Vector3 _MuzzleLaunchPoint;
+    public Transform _MuzzleLaunchPoint;
     public float _baseFireDelay = 1;
     public float _currentFireDelay = 1;
     private float _FiringTimer = 0f;
@@ -133,7 +133,7 @@ public class Character : MonoBehaviour
 
                 if (_deathEffect != null) // Create death effect
                 {
-                    Destroy(Instantiate(_FiringEffect, _MuzzleLaunchPoint, transform.rotation), 5.0f);
+                    Destroy(Instantiate(_FiringEffect, _MuzzleLaunchPoint.position, transform.rotation), 5.0f);
                 }
             }
         }
