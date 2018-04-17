@@ -86,14 +86,8 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < enemyType.Count; i++){
 
                 // Create game object
-                Instantiate(enemyType._Prefab.gameObject, transform.position, Quaternion.identity);
+                _AllEnemies.Add(Instantiate(enemyType._Prefab.gameObject, transform.position, Quaternion.identity).GetComponent<Enemy>());
             }
-        }
-
-        // Get all enemies for object pooling
-        foreach (var obj in GameObject.FindGameObjectsWithTag("Enemy")) {
-
-            _AllEnemies.Add(obj.GetComponent<Enemy>());
         }
 
         // All enemies are pending(dead) at startup
