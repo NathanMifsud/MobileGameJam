@@ -19,6 +19,12 @@ public class FollowPath : MonoBehaviour {
     //----------------------------------------------------------------------------------
     // *** FUNCTIONS ***
 
+    /// -------------------------------------------
+    /// 
+    ///     Startup
+    /// 
+    /// -------------------------------------------
+
     private void Start() {
 
         // Get component references
@@ -38,36 +44,51 @@ public class FollowPath : MonoBehaviour {
         }
     }
 
+    /// -------------------------------------------
+    /// 
+    ///     Update
+    /// 
+    /// -------------------------------------------
+
     private void Update () {
 
-        // Agent & target are within the threshold (has reached target)
-        if (Vector3.Distance(_Agent.transform.position, _TargetTransform.position) < _TargetThreshold) {
+        if (_TargetPoints.Count == 0) {
 
-            // Not the end of the array yet
-            if (_ArrayPosition < _TargetsLength) {
+            // Continuously move the target position down so that the agent follows the updated path
+            _TargetTransform.position += Vector3.down * Time.deltaTime;
+        }
 
-                // Set new go to target
-                _ArrayPosition += 1;
-                _TargetTransform = _TargetPoints[_ArrayPosition];
+        else  {
+
+            // Agent & target are within the threshold (has reached target)
+            if (Vector3.Distance(_Agent.transform.position, _TargetTransform.position) < _TargetThreshold) {
+
+                // Not the end of the array yet
+                if (_ArrayPosition < _TargetsLength) {
+
+                    // Set new go to target
+                    _ArrayPosition += 1;
+                    _TargetTransform = _TargetPoints[_ArrayPosition];
+                }
+
+                // Has reached the end of the transform array
+                else {
+
+                    // Kill agent for pending recycle
+                    _Agent.OnDeath();
+                }
             }
 
-            // Has reached the end of the transform array
+            // Hasnt reached target yet
             else {
 
-                // Kill agent for pending recycle
-                _Agent.OnDeath();
+                // Look at current target's position
+                _Agent.transform.LookAt(_TargetTransform);
+
+                // Move towards last known facing direction
+                float speed = _Agent._MovementSpeed * Time.deltaTime;
+                _Agent.transform.Translate(Vector3.forward * speed);
             }
-        }
-        
-        // Hasnt reached target yet
-        else {
-
-            // Look at current target's position
-            _Agent.transform.LookAt(_TargetTransform);
-
-            // Move towards last known facing direction
-            float speed = _Agent._MovementSpeed * Time.deltaTime;
-            _Agent.transform.Translate(Vector3.forward * speed);
         }
 	}
 
