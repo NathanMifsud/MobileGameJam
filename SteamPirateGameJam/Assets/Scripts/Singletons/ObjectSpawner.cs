@@ -39,7 +39,7 @@ public class ObjectSpawner : MonoBehaviour
         _playAreaMin = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, transform.position.z - mainCamera.transform.position.z));
         _playAreaMax = Camera.main.ScreenToWorldPoint(new Vector3(mainCamera.pixelWidth, mainCamera.pixelHeight, transform.position.z - mainCamera.transform.position.z));
 
-        //Invoke("SpawnPickup", Random.Range(_minPickupSpawnTime, _maxPickupSpawnTime));
+        Invoke("SpawnPickup", Random.Range(_minPickupSpawnTime, _maxPickupSpawnTime));
         Invoke("SpawnEnemies", Random.Range(_minEnemySpawnTime, _maxEnemySpawnTime));
     }
 
@@ -56,6 +56,8 @@ public class ObjectSpawner : MonoBehaviour
         position.z = _playAreaMax.z + 1;
 
         pickup.transform.position = position;
+
+        GameManager._Instance.OnPickupSpawn(pickup);
 
         Invoke("SpawnPickup", Random.Range(_minPickupSpawnTime, _maxPickupSpawnTime));
     }
