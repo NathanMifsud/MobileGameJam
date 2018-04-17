@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class FollowPath : MonoBehaviour {
@@ -9,7 +8,7 @@ public class FollowPath : MonoBehaviour {
 
     public List<Transform> _TargetPoints;
     public float _TargetThreshold = 5f;
-    public float _RotationSpeed = 1f;
+    public float _MaxRotation = 1f;
     public float _MaxMagnitudeDelta = 0f;
 
     private Enemy _Agent;
@@ -87,12 +86,13 @@ public class FollowPath : MonoBehaviour {
                 // Look at current target's position
                 ///_Agent.transform.LookAt(_TargetTransform);
 
+                Vector3 dir = _TargetTransform.position - transform.position;
                 // Rotate towards target position
-                _Agent.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.eulerAngles, transform.position, _RotationSpeed, _MaxMagnitudeDelta));
+                _Agent.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.position, dir, _MaxRotation * Time.deltaTime, _MaxMagnitudeDelta));
 
                 // Move towards last known facing direction
                 float speed = _Agent._MovementSpeed * Time.deltaTime;
-                _Agent.transform.Translate(Vector3.back * speed);
+                _Agent.transform.Translate(Vector3.forward * speed);
             }
         }
 	}
