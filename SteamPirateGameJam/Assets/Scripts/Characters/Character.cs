@@ -10,17 +10,16 @@ public class Character : MonoBehaviour
     [HideInInspector]
     public TEAM _team;
 
+    [Header("Health")]
     public float _health = 1;
     [SerializeField]
-    protected float _currentHealth = 1;    
+    protected float _currentHealth = 1;
+    public GameObject _deathEffect = null;
 
     [Header("Firing Delay")]
     public float _baseFireDelay = 1;
     public float _currentFireDelay = 1;
     private float _CurrentFiringDelay = 0f;
-
-    [Header("OnDeath")]
-    public GameObject _deathEffect = null;
 
     // Use this for initialization
     protected virtual void Start ()
@@ -68,12 +67,12 @@ public class Character : MonoBehaviour
 
     public virtual void FireProjectile()
     {
-
+        // Sam wanted it this way HURR DURR I AM SAM NO SPACES PLEASE EXCEPT HERE ROKAY
     }
 
     /// -------------------------------------------
     /// 
-    ///     Defualt Firing
+    ///     Default Firing
     ///     Using default sound no offset in rotation
     ///     
     /// -------------------------------------------
@@ -84,7 +83,7 @@ public class Character : MonoBehaviour
 
     /// -------------------------------------------
     /// 
-    ///     Defualt Firing
+    ///     Default Firing
     ///     Using default sound, offset in rotation
     ///     
     /// -------------------------------------------
