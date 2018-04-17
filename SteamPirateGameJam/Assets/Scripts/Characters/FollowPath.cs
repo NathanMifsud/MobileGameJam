@@ -10,7 +10,7 @@ public class FollowPath : MonoBehaviour {
     public List<Transform> _TargetPoints;
     public float _TargetThreshold = 5f;
     public float _RotationSpeed = 1f;
-    public float _MaxMagnitudeDelta = 1f;
+    public float _MaxMagnitudeDelta = 0f;
 
     private Enemy _Agent;
     private Transform _TargetTransform;
@@ -88,7 +88,7 @@ public class FollowPath : MonoBehaviour {
                 ///_Agent.transform.LookAt(_TargetTransform);
 
                 // Rotate towards target position
-                _Agent.transform.rotation = Quaternion.Euler(Vector3.RotateTowards(transform.eulerAngles, transform.position, _RotationSpeed, _MaxMagnitudeDelta));
+                _Agent.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.eulerAngles, transform.position, _RotationSpeed, _MaxMagnitudeDelta));
 
                 // Move towards last known facing direction
                 float speed = _Agent._MovementSpeed * Time.deltaTime;
