@@ -6,13 +6,13 @@ public class FollowPath : MonoBehaviour {
     //----------------------------------------------------------------------------------
     // *** VARIABLES ***
 
-    public List<Transform> _TargetPoints;
+    public List<Transform> _TargetPoints = new List<Transform>();
     public float _TargetThreshold = 5f;
     public float _MaxRotationDelta = 1f;
     public float _MaxMagnitudeDelta = 0f;
 
-    private Enemy _Agent;
-    private Transform _TargetTransform;
+    private Enemy _Agent = null;
+    private Transform _TargetTransform = null;
 
     private int _TargetsLength;
     private int _ArrayPosition = 0;
@@ -39,10 +39,6 @@ public class FollowPath : MonoBehaviour {
             _ArrayPosition = 0;
             _TargetTransform = _TargetPoints[_ArrayPosition];
         }
-        else {
-
-            _TargetTransform.position += Vector3.down;
-        }
     }
 
     /// -------------------------------------------
@@ -56,7 +52,7 @@ public class FollowPath : MonoBehaviour {
         if (_TargetPoints.Count == 0) {
 
             // Continuously move the target position down so that the agent follows the updated path
-            _TargetTransform.position += Vector3.down * Time.deltaTime;
+            transform.position += Vector3.down * Time.deltaTime;
         }
 
         else  {

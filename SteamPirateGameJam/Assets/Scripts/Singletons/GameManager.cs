@@ -17,15 +17,15 @@ public class GameManager : MonoBehaviour
     }
     
     [Header("Enemies")]
-    public List<Enemies> _EnemyTypes;
+    public List<Enemies> _EnemyTypes = new List<Enemies>();
     [HideInInspector]
-    public List<Enemy> _AllEnemies;
+    public List<Enemy> _AllEnemies = new List<Enemy>();
     [HideInInspector]
-    public List<Enemy> _ActiveEnemies;
+    public List<Enemy> _ActiveEnemies = new List<Enemy>();
     [HideInInspector]
-    public List<Enemy> _PendingEnemies;
+    public List<Enemy> _PendingEnemies = new List<Enemy>();
     [HideInInspector]
-    public List<Enemy> _AvailiableEnemies;
+    public List<Enemy> _AvailiableEnemies = new List<Enemy>();
     [HideInInspector]
     public Player _Player;
     
@@ -33,17 +33,17 @@ public class GameManager : MonoBehaviour
     public GameObject _PlayerProjectile;
     public GameObject _EnemyProjectile;
     [HideInInspector]
-    public List<Projectile> _PlayerProjectiles;
+    public List<Projectile> _PlayerProjectiles = new List<Projectile>();
     [HideInInspector]
-    public List<Projectile> _ActivePlayerProjectiles;
+    public List<Projectile> _ActivePlayerProjectiles = new List<Projectile>();
     [HideInInspector]
-    public List<Projectile> _PendingPlayerProjectiles;
+    public List<Projectile> _PendingPlayerProjectiles = new List<Projectile>();
     [HideInInspector]
-    public List<Projectile> _EnemyProjectiles;
+    public List<Projectile> _EnemyProjectiles = new List<Projectile>();
     [HideInInspector]
-    public List<Projectile> _ActiveEnemyProjectiles;
+    public List<Projectile> _ActiveEnemyProjectiles = new List<Projectile>();
     [HideInInspector]
-    public List<Projectile> _PendingEnemyProjectiles;
+    public List<Projectile> _PendingEnemyProjectiles = new List<Projectile>();
     private int _POOL_SIZE_PLAYER_PROJECTILES = 30;
     private int _POOL_SIZE_ENEMY_PROJECTILES = 100;
 
@@ -86,15 +86,9 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < enemyType.Count; i++){
 
                 // Create game object
-                Instantiate(enemyType._Prefab.gameObject);
+                Instantiate(enemyType._Prefab.gameObject, transform.position, Quaternion.identity);
             }
         }
-
-        // Create character object lists
-        _AllEnemies = new List<Enemy>();
-        _ActiveEnemies = new List<Enemy>();
-        _PendingEnemies = new List<Enemy>();
-        _AvailiableEnemies = new List<Enemy>();
 
         // Get all enemies for object pooling
         foreach (var obj in GameObject.FindGameObjectsWithTag("Enemy")) {
@@ -112,12 +106,12 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < _POOL_SIZE_PLAYER_PROJECTILES; i++) {
 
             // Create game object
-            Instantiate(_PlayerProjectile);
+            Instantiate(_PlayerProjectile, transform.position, Quaternion.identity);
         }
         for (int i = 0; i < _POOL_SIZE_ENEMY_PROJECTILES; i++) {
 
             // Create game object
-            Instantiate(_EnemyProjectile);
+            Instantiate(_EnemyProjectile, transform.position, Quaternion.identity);
         }
 
         // Create projectile object lists
@@ -278,14 +272,14 @@ public class GameManager : MonoBehaviour
         List<Enemy> list = new List<Enemy>();
 
         // There are enough pending enemies to return
-        if (_PendingEnemies.Count >= amount) {
+        if (_AvailiableEnemies.Count >= amount) {
 
             for (int i = 0; i < amount; i++) {
 
                 // If it is a matching enemy type
-                if (_PendingEnemies[i]._EnemyType == type) {
+                if (_AvailiableEnemies[i]._EnemyType == type) {
 
-                    list.Add(_PendingEnemies[i]);
+                    list.Add(_AvailiableEnemies[i]);
                 }
             }
         }
@@ -294,15 +288,23 @@ public class GameManager : MonoBehaviour
         else {
 
             // Get as many enemies as possible of the same type
-            int difference = amount - _PendingEnemies.Count;
+            int difference = amount - _AvailiableEnemies.Count;
             for (int i = 0; i < amount - difference; i++) { 
 
                 // If it is a matching enemy type
-                if (_PendingEnemies[i]._EnemyType == type) {
+                if (_AvailiableEnemies[i]._EnemyType == type) {
 
-                    list.Add(_PendingEnemies[i]);
+                    list.Add(_AvailiableEnemies[i]);
                 }
             }
+        }
+
+        foreach (Enemy enemy in list)
+        {
+            enemy._CurrentState = Enemy.State.Active;
+
+            _AvailiableEnemies.Remove(enemy);
+            _ActiveEnemies.Add(enemy);
         }
 
         // Return list of enemies to use

@@ -94,11 +94,12 @@ public class Character : MonoBehaviour
         {
             projectile.transform.position = position;
             projectile.transform.rotation = facingDir * Quaternion.Euler(0, rotationOffset, 0);
-        }
-        // Move to active pool
-        GameManager._Instance.OnProjectileFired(projectile);
 
-        SoundManager._Instance.PlayFireProjectileDefault(0.9f, 1.1f);
+            // Move to active pool
+            GameManager._Instance.OnProjectileFired(projectile);
+
+            SoundManager._Instance.PlayFireProjectileDefault(0.9f, 1.1f);
+        }
     }
 
     /// -------------------------------------------
@@ -114,19 +115,20 @@ public class Character : MonoBehaviour
         {
             projectile.transform.position = position;
             projectile.transform.rotation = facingDir * Quaternion.Euler(0, rotationOffset, 0);
-        }
-        // Move to active pool
-        GameManager._Instance.OnProjectileFired(projectile);
 
-        //Determine sound to play
-        if(character._team == TEAM.ENEMY)
-            SoundManager._Instance.PlayFireProjectileDefault(0.9f, 1.1f);
-        else
-        {
-            if (character.GetComponent<Player>()._HasPickupRapidFire)
-                SoundManager._Instance.PlayPickupRapidFire(0.9f, 1.1f);
-            else
+            // Move to active pool
+            GameManager._Instance.OnProjectileFired(projectile);
+
+            //Determine sound to play
+            if (character._team == TEAM.ENEMY)
                 SoundManager._Instance.PlayFireProjectileDefault(0.9f, 1.1f);
+            else
+            {
+                if (character.GetComponent<Player>()._HasPickupRapidFire)
+                    SoundManager._Instance.PlayPickupRapidFire(0.9f, 1.1f);
+                else
+                    SoundManager._Instance.PlayFireProjectileDefault(0.9f, 1.1f);
+            }
         }
     }
 }
