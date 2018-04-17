@@ -114,13 +114,9 @@ public class GameManager : MonoBehaviour
             _EnemyProjectiles.Add(projectileScript);
         }
 
-        // Create projectile object lists
-        _PlayerProjectiles = new List<Projectile>();
-        _EnemyProjectiles = new List<Projectile>();
-        _PendingPlayerProjectiles = new List<Projectile>();
-        _PendingEnemyProjectiles = new List<Projectile>();
-        _ActivePlayerProjectiles = new List<Projectile>();
-        _ActiveEnemyProjectiles = new List<Projectile>();
+
+        _PendingPlayerProjectiles = _PlayerProjectiles;
+        _PendingEnemyProjectiles = _EnemyProjectiles;
 
         // Create pickup object lists
         _AllPickups = new List<Pickup>();
