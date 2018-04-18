@@ -76,13 +76,13 @@ public class ObjectSpawner : MonoBehaviour
         switch (rand)
         {
             case 0:
-                enemies = GameManager._Instance.GetEnemies(Enemy.EnemyType.Creatures, 1);
+                enemies = GameManager._Instance.GetEnemies(Enemy.EnemyType.Creatures, GameManager._Instance._EnemyTypes[0].FlockSize);
                 break;
             case 1:
-                enemies = GameManager._Instance.GetEnemies(Enemy.EnemyType.BigBoat, 1);
+                enemies = GameManager._Instance.GetEnemies(Enemy.EnemyType.BigBoat, GameManager._Instance._EnemyTypes[1].FlockSize);
                 break;
             case 2:
-                enemies = GameManager._Instance.GetEnemies(Enemy.EnemyType.SmallBoat, 1);
+                enemies = GameManager._Instance.GetEnemies(Enemy.EnemyType.SmallBoat, GameManager._Instance._EnemyTypes[2].FlockSize);
                 break;
             default:
                 break;
