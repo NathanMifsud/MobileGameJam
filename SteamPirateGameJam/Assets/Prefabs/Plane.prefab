@@ -46,7 +46,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1570632204626178
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,6 +291,7 @@ MonoBehaviour:
   _FiringTarget: {fileID: 0}
   _FindRandomTargetWithinArea: 0
   _AreaBounds: {fileID: 0}
+  _deathZone: 0
 --- !u!114 &114536579807389632
 MonoBehaviour:
   m_ObjectHideFlags: 1
