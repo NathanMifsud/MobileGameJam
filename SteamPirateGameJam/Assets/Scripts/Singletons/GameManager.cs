@@ -90,12 +90,17 @@ public class GameManager : MonoBehaviour
                 _AllEnemies.Add(Instantiate(enemyType._Prefab.gameObject, transform.position, Quaternion.identity).GetComponent<Enemy>());
             }
         }
+		
+		
 
         // All enemies are pending(dead) at startup
         _AvailiableEnemies = _AllEnemies;
 
         // Get reference to player
-        _Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+		if (GameObject.FindGameObjectWithTag ("Player")) {
+			_Player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
+		}
+
 
         // Instantiate each projectile type
         for (int i = 0; i < _POOL_SIZE_PLAYER_PROJECTILES; i++) {
