@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 4843462449816384}
   - component: {fileID: 114099871159655312}
   - component: {fileID: 114536579807389632}
+  - component: {fileID: 65020393355863396}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Enemy
@@ -71,10 +72,9 @@ GameObject:
   - component: {fileID: 33783678132644172}
   - component: {fileID: 23777941917427482}
   - component: {fileID: 95012525683326046}
-  - component: {fileID: 65349978680682886}
   m_Layer: 0
   m_Name: Mesh_BiPlane
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,7 +113,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1328335294615036}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21, y: 0, z: 70.1}
+  m_LocalPosition: {x: 373.87598, y: 170.60844, z: 362.01154}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4659761917484218}
@@ -216,14 +216,14 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1570632204626178}
   m_Mesh: {fileID: 4300000, guid: 171d43b11e3ed2045b1092ba9c30d444, type: 3}
---- !u!65 &65349978680682886
+--- !u!65 &65020393355863396
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1570632204626178}
+  m_GameObject: {fileID: 1328335294615036}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 16.9506, y: 6.4951773, z: 13.974657}

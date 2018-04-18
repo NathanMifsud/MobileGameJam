@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//script written by Deeons
+
 public class Enemy : Character {
 
     //----------------------------------------------------------------------------------

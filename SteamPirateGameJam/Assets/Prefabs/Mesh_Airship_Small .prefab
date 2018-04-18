@@ -36,6 +36,7 @@ GameObject:
   - component: {fileID: 4524632259934388}
   - component: {fileID: 114415770393453516}
   - component: {fileID: 114287912395053116}
+  - component: {fileID: 65566903601883514}
   m_Layer: 0
   m_Name: 'Mesh_Airship_Small '
   m_TagString: Enemy
@@ -52,10 +53,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4575764734846386}
   - component: {fileID: 95065773640027588}
-  - component: {fileID: 65269190902496110}
   m_Layer: 0
   m_Name: ship_myles_cannonshoot_anim
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,7 +158,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1405138137006242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 71.399994}
+  m_LocalPosition: {x: 320.6104, y: 149.06627, z: 362.09842}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4575764734846386}
@@ -318,18 +318,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1734565856445470}
   m_Mesh: {fileID: 4300002, guid: 51f5f510e3ce47443ba70014e14151c2, type: 3}
---- !u!65 &65269190902496110
+--- !u!65 &65566903601883514
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1441587307823456}
+  m_GameObject: {fileID: 1405138137006242}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 25.50308, y: 17.309723, z: 15.248186}
-  m_Center: {x: -2.3042774, y: 5.078869, z: -0.51775265}
+  m_Size: {x: 19.51, y: 17.309723, z: 24.55}
+  m_Center: {x: 0, y: 5.078869, z: 2.7}
 --- !u!95 &95065773640027588
 Animator:
   serializedVersion: 3
@@ -375,12 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bee6570a744d04393aff7050b89e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _TargetPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _TargetPoints: []
   _TargetThreshold: 5
   _MaxRotationDelta: 1000
   _MaxMagnitudeDelta: 0
