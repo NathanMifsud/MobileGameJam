@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-//script written by Deeon
-
 public class FollowPath : MonoBehaviour {
 
     //----------------------------------------------------------------------------------
@@ -92,9 +90,4 @@ public class FollowPath : MonoBehaviour {
         }
 	}
 
-
-    void SetPath(List<Transform> path)
-    {
-        _TargetPoints = path;
-    }
 }

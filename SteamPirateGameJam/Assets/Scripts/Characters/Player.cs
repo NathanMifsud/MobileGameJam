@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-//script written by Deeon
-
 public class Player : Character {
 
     //----------------------------------------------------------------------------------
