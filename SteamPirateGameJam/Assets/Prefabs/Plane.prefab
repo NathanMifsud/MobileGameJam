@@ -284,7 +284,7 @@ MonoBehaviour:
   _RespawnDelay: 1
   _SpawnLocation: {fileID: 0}
   _CurrentState: 0
-  _MovementSpeed: 35
+  _MovementSpeed: 45
   _RotationSpeed: 2
   _FiringTarget: {fileID: 0}
   _FindRandomTargetWithinArea: 0
@@ -300,7 +300,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bee6570a744d04393aff7050b89e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _TargetPoints: []
+  _TargetPoints:
+  - {fileID: 4602485891537256, guid: 95b7368b9a45c1c469f04696749387db, type: 2}
   _TargetThreshold: 5
   _MaxRotationDelta: 1000
   _MaxMagnitudeDelta: 0

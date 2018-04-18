@@ -440,7 +440,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bee6570a744d04393aff7050b89e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _TargetPoints: []
+  _TargetPoints:
+  - {fileID: 4659496871543428, guid: 73a8cd3837cf7de42be5788a1602325d, type: 2}
   _TargetThreshold: 5
   _MaxRotationDelta: 1000
   _MaxMagnitudeDelta: 0
