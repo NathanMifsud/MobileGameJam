@@ -415,8 +415,10 @@ MonoBehaviour:
   _team: 0
   _health: 1
   _currentHealth: 1
-  _deathEffect: {fileID: 0}
-  _FiringEffect: {fileID: 0}
+  _deathEffect: {fileID: 1231758448395422, guid: 8227a3051d5228c4cbfccde37bac87fc,
+    type: 2}
+  _FiringEffect: {fileID: 1227769836158018, guid: 5eb767b5dca3a2e4aae9ec9ad16b9e5c,
+    type: 2}
   _MuzzleLaunchPoint: {fileID: 4443423786802812}
   _baseFireDelay: 1
   _currentFireDelay: 1
