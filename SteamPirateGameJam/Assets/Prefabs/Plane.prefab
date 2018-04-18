@@ -28,21 +28,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1319331428679648
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4845034506154760}
-  m_Layer: 0
-  m_Name: Cannon
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1328335294615036
 GameObject:
   m_ObjectHideFlags: 0
@@ -53,10 +38,9 @@ GameObject:
   - component: {fileID: 4843462449816384}
   - component: {fileID: 114099871159655312}
   - component: {fileID: 114536579807389632}
-  - component: {fileID: 65020393355863396}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,6 +63,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1630567350872518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4333420550405160}
+  m_Layer: 0
+  m_Name: GameObject (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4333420550405160
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1630567350872518}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.88, y: 0.58, z: 2.8300018}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4843462449816384}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4494291778378086
 Transform:
   m_ObjectHideFlags: 1
@@ -113,26 +125,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1328335294615036}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 373.87598, y: 170.60844, z: 362.01154}
+  m_LocalPosition: {x: 21, y: 0, z: 70.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4659761917484218}
-  - {fileID: 4845034506154760}
+  - {fileID: 4333420550405160}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4845034506154760
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1319331428679648}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.47, z: 6.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4843462449816384}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23353969748853680
 MeshRenderer:
@@ -216,18 +215,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1570632204626178}
   m_Mesh: {fileID: 4300000, guid: 171d43b11e3ed2045b1092ba9c30d444, type: 3}
---- !u!65 &65020393355863396
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1328335294615036}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 16.9506, y: 6.4951773, z: 13.974657}
-  m_Center: {x: 0.021047115, y: 2.7614684, z: 1.0378332}
 --- !u!95 &95012525683326046
 Animator:
   serializedVersion: 3
@@ -260,19 +247,18 @@ MonoBehaviour:
   _health: 1
   _currentHealth: 1
   _deathEffect: {fileID: 0}
-  _FiringEffect: {fileID: 0}
-  _MuzzleLaunchPoint: {fileID: 4845034506154760}
   _baseFireDelay: 1
   _currentFireDelay: 1
   _EnemyType: 0
   _RespawnDelay: 1
-  _SpawnLocation: {fileID: 0}
+  _SpawnLocation: {fileID: 4333420550405160}
   _CurrentState: 0
   _MovementSpeed: 35
   _RotationSpeed: 2
   _FiringTarget: {fileID: 0}
   _FindRandomTargetWithinArea: 0
-  _AreaBounds: {fileID: 0}
+  _AreaBounds: {fileID: 1304235731285188, guid: b14fbe847ad2ae345b00a396a0c4a2fb,
+    type: 2}
 --- !u!114 &114536579807389632
 MonoBehaviour:
   m_ObjectHideFlags: 1

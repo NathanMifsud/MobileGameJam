@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//script written by Deeon
-
 public class Pickup : MonoBehaviour {
 
     //----------------------------------------------------------------------------------
