@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
         }
 
         // All enemies are pending(dead) at startup
-        _PendingEnemies = _AllEnemies;
+        _AvailiableEnemies = _AllEnemies;
 
         // Get reference to player
         _Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -105,6 +105,7 @@ public class GameManager : MonoBehaviour
             Projectile projectileScript = proj.GetComponent<Projectile>();
             projectileScript._team = Character.TEAM.PLAYER;
             _PlayerProjectiles.Add(projectileScript);
+            proj.SetActive(false);
         }
 
         for (int i = 0; i < _POOL_SIZE_ENEMY_PROJECTILES; i++) {
@@ -114,6 +115,7 @@ public class GameManager : MonoBehaviour
             Projectile projectileScript = proj.GetComponent<Projectile>();
             projectileScript._team = Character.TEAM.ENEMY;
             _EnemyProjectiles.Add(projectileScript);
+            proj.SetActive(false);
         }
 
 
@@ -168,6 +170,7 @@ public class GameManager : MonoBehaviour
 
                 int size = _PendingPlayerProjectiles.Count;
                 Projectile proj = _PendingPlayerProjectiles[size - 1];
+                proj.gameObject.SetActive(true);
                 return proj;
             }
             else { return null; }
@@ -180,6 +183,7 @@ public class GameManager : MonoBehaviour
 
                 int size = _PendingEnemyProjectiles.Count;
                 Projectile proj = _PendingEnemyProjectiles[size - 1];
+                proj.gameObject.SetActive(true);
                 return proj;
             }
             else { return null; }
@@ -214,6 +218,8 @@ public class GameManager : MonoBehaviour
             // Move to pending array
             _PendingPlayerProjectiles.Add(proj);
             _ActivePlayerProjectiles.Remove(proj);
+            proj.gameObject.SetActive(false);
+
             // Play sound
             SoundManager._Instance.PlayPlayerProjectileImpact(0.9f, 1.1f);
         }
@@ -224,6 +230,7 @@ public class GameManager : MonoBehaviour
             // Move to pending array
             _PendingEnemyProjectiles.Add(proj);
             _ActiveEnemyProjectiles.Remove(proj);
+            proj.gameObject.SetActive(false);
 
             // Play sound
             SoundManager._Instance.PlayEnemyProjectileImpact(0.9f, 1.1f);

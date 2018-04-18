@@ -21,7 +21,7 @@ public class Enemy : Character {
     public Transform _SpawnLocation = null;
 
     [HideInInspector]
-    public State _CurrentState;
+    public State _CurrentState = State.Active;
     private float _CurrentSpawnTimer = 0f;
 
     [Header("Movement")]

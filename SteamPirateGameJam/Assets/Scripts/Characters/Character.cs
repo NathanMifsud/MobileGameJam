@@ -61,8 +61,8 @@ public class Character : MonoBehaviour
         {
             Destroy(Instantiate(_deathEffect, transform.position, Quaternion.identity), 5.0f);
         }
-
         transform.position = GameManager._Instance.gameObject.transform.position;
+        gameObject.SetActive(false);
     }
 
     public void TakeDamage(float damage)
@@ -99,7 +99,7 @@ public class Character : MonoBehaviour
         {
             projectile.transform.position = position;
             projectile.transform.rotation = facingDir * Quaternion.Euler(0, rotationOffset, 0);
-
+            projectile.transform.rotation = projectile.transform.rotation * Quaternion.Euler(0, 180, 0);
             // Move to active pool
             GameManager._Instance.OnProjectileFired(projectile);
 

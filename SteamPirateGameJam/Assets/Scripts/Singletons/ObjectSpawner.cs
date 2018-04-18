@@ -103,6 +103,8 @@ public class ObjectSpawner : MonoBehaviour
 
                 enemy.transform.position = position;
                 enemy.transform.rotation = Quaternion.Euler(0,180,0);
+
+                enemy.gameObject.SetActive(true);
             }
         }
         Invoke("SpawnEnemies", Random.Range(_minEnemySpawnTime, _maxEnemySpawnTime));
