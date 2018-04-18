@@ -1367,8 +1367,7 @@ MonoBehaviour:
   _PendingEnemies: []
   _AvailiableEnemies: []
   _Player: {fileID: 0}
-  _PlayerProjectile: {fileID: 0}
-  _EnemyProjectile: {fileID: 0}
+  _Projectile: {fileID: 0}
   _PlayerProjectiles: []
   _ActivePlayerProjectiles: []
   _PendingPlayerProjectiles: []
