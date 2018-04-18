@@ -52,8 +52,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4575764734846386}
   - component: {fileID: 95065773640027588}
-  - component: {fileID: 114119079204328788}
-  - component: {fileID: 114127841360121622}
   - component: {fileID: 65269190902496110}
   m_Layer: 0
   m_Name: ship_myles_cannonshoot_anim
@@ -366,54 +364,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114119079204328788
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1441587307823456}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9b97cba6ba42ca42af065737d825283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _team: 0
-  _health: 1
-  _currentHealth: 1
-  _deathEffect: {fileID: 0}
-  _FiringEffect: {fileID: 0}
-  _MuzzleLaunchPoint: {fileID: 0}
-  _baseFireDelay: 1
-  _currentFireDelay: 1
-  _EnemyType: 2
-  _RespawnDelay: 1
-  _SpawnLocation: {fileID: 0}
-  _CurrentState: 0
-  _MovementSpeed: 15
-  _RotationSpeed: 2
-  _FiringTarget: {fileID: 0}
-  _FindRandomTargetWithinArea: 0
-  _AreaBounds: {fileID: 0}
---- !u!114 &114127841360121622
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1441587307823456}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80bee6570a744d04393aff7050b89e70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _TargetPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _TargetThreshold: 5
-  _MaxRotationDelta: 1
-  _MaxMagnitudeDelta: 0
 --- !u!114 &114287912395053116
 MonoBehaviour:
   m_ObjectHideFlags: 1
