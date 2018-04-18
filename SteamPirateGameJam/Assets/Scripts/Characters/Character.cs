@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//script written by Deeon
+
 public class Character : MonoBehaviour
 {
     public enum TEAM { PLAYER,ENEMY};
@@ -59,6 +61,8 @@ public class Character : MonoBehaviour
         {
             Destroy(Instantiate(_deathEffect, transform.position, Quaternion.identity), 5.0f);
         }
+
+        transform.position = GameManager._Instance.gameObject.transform.position;
     }
 
     public void TakeDamage(float damage)
