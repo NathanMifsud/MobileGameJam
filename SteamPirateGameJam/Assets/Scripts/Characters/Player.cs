@@ -220,19 +220,19 @@ public class Player : Character {
             // Default firemode
             case WEAPON.BASIC:
 
-                SpawnBullet(_MuzzleLaunchPoint.position, transform.rotation, 0, this);
+                SpawnBullet(_MuzzleLaunchPoint.position, _MuzzleLaunchPoint.rotation, 0, this);
                 break;
             // Spread firemode
             case WEAPON.SPREAD:
 
                 // Projectile 1
-                SpawnBullet(_MuzzleLaunchPoint.position, transform.rotation, 30, this);
+                SpawnBullet(_MuzzleLaunchPoint.position, _MuzzleLaunchPoint.rotation, 30, this);
 
                 // Projectile 2
-                SpawnBullet(_MuzzleLaunchPoint.position, transform.rotation, 0, this);
+                SpawnBullet(_MuzzleLaunchPoint.position, _MuzzleLaunchPoint.rotation, 0, this);
 
                 // Projectile 3
-                SpawnBullet(_MuzzleLaunchPoint.position, transform.rotation, -30, this);
+                SpawnBullet(_MuzzleLaunchPoint.position, _MuzzleLaunchPoint.rotation, -30, this);
                 break;
 
             default: break;

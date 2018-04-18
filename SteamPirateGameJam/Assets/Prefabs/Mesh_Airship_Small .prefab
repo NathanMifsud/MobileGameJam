@@ -21,9 +21,11 @@ GameObject:
   - component: {fileID: 4524632259934388}
   - component: {fileID: 114415770393453516}
   - component: {fileID: 114287912395053116}
+  - component: {fileID: 65727192091184228}
+  - component: {fileID: 54150563030309260}
   m_Layer: 0
   m_Name: 'Mesh_Airship_Small '
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,11 +41,9 @@ GameObject:
   - component: {fileID: 33476913062834062}
   - component: {fileID: 23026246977689054}
   - component: {fileID: 95146915441467340}
-  - component: {fileID: 114588901419540944}
-  - component: {fileID: 114770328204717052}
   m_Layer: 0
   m_Name: 'Mesh_Airship_Small '
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,7 +104,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1966222387558512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.57, y: 0.58, z: 2.43}
+  m_LocalPosition: {x: 0.03, y: 4.33, z: 5.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4524632259934388}
@@ -158,7 +158,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1405138137006242}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.2, y: 0, z: 70.5}
+  m_LocalPosition: {x: -140.56172, y: 109.91998, z: -125.95796}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4507165155669770}
@@ -289,6 +289,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1986080923561358}
   m_Mesh: {fileID: 4300004, guid: 23fd597f4c44e124e826a7bb3f40cc01, type: 3}
+--- !u!54 &54150563030309260
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1405138137006242}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65727192091184228
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1405138137006242}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.97, y: 11.32, z: 11.47}
+  m_Center: {x: 0, y: 4.46, z: 0}
 --- !u!95 &95146915441467340
 Animator:
   serializedVersion: 3
@@ -317,12 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bee6570a744d04393aff7050b89e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _TargetPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _TargetPoints: []
   _TargetThreshold: 1
   _MaxRotationDelta: 1000
   _MaxMagnitudeDelta: 1
@@ -341,63 +363,16 @@ MonoBehaviour:
   _health: 1
   _currentHealth: 1
   _deathEffect: {fileID: 0}
+  _FiringEffect: {fileID: 0}
+  _MuzzleLaunchPoint: {fileID: 4357220623265298}
   _baseFireDelay: 1
   _currentFireDelay: 1
   _EnemyType: 1
   _RespawnDelay: 1
-  _SpawnLocation: {fileID: 4082330559295142, guid: 3c8ab66b83799394fb85d8f26aa889f9,
-    type: 2}
+  _SpawnLocation: {fileID: 0}
   _CurrentState: 0
   _MovementSpeed: 30
   _RotationSpeed: 2
-  _FiringTarget: {fileID: 1966222387558512}
-  _FindRandomTargetWithinArea: 0
-  _AreaBounds: {fileID: 1304235731285188, guid: b14fbe847ad2ae345b00a396a0c4a2fb,
-    type: 2}
---- !u!114 &114588901419540944
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1671907304859600}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9b97cba6ba42ca42af065737d825283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _team: 0
-  _health: 1
-  _currentHealth: 1
-  _deathEffect: {fileID: 0}
-  _baseFireDelay: 1
-  _currentFireDelay: 1
-  _EnemyType: 1
-  _RespawnDelay: 1
-  _SpawnLocation: {fileID: 4018790713297010, guid: baf04f32a5ab0834aa45402ca7ea0487,
-    type: 2}
-  _CurrentState: 0
-  _MovementSpeed: 20
-  _RotationSpeed: 2
   _FiringTarget: {fileID: 0}
-  _FindRandomTargetWithinArea: 1
+  _FindRandomTargetWithinArea: 0
   _AreaBounds: {fileID: 0}
---- !u!114 &114770328204717052
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1671907304859600}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80bee6570a744d04393aff7050b89e70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _TargetPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _TargetThreshold: 1
-  _MaxRotationDelta: 1
-  _MaxMagnitudeDelta: 1

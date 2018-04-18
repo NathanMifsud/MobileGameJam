@@ -6,6 +6,8 @@ using UnityEngine;
 using System.Collections;
 using Object = UnityEngine.Object;
 
+//script written by Deeon
+
 public class InspectorLockToggle
 {
     private static EditorWindow _mouseOverWindow;

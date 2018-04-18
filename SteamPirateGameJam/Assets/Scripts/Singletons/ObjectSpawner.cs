@@ -38,8 +38,8 @@ public class ObjectSpawner : MonoBehaviour
     void Start ()
     {
         Camera mainCamera = Camera.main;
-        _playAreaMin = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, transform.position.z - mainCamera.transform.position.z));
-        _playAreaMax = Camera.main.ScreenToWorldPoint(new Vector3(mainCamera.pixelWidth, mainCamera.pixelHeight, transform.position.z - mainCamera.transform.position.z));
+        _playAreaMax = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, transform.position.y - mainCamera.transform.position.y));
+        _playAreaMin = Camera.main.ScreenToWorldPoint(new Vector3(mainCamera.pixelWidth, mainCamera.pixelHeight, transform.position.y - mainCamera.transform.position.y));
 
         //Invoke("SpawnPickup", Random.Range(_minPickupSpawnTime, _maxPickupSpawnTime));
         Invoke("SpawnEnemies", Random.Range(_minEnemySpawnTime, _maxEnemySpawnTime));
@@ -94,13 +94,15 @@ public class ObjectSpawner : MonoBehaviour
             else
             {
                 Vector3 position = Vector3.zero;
+
                 //Random x pos in range of screen;
                 position.x = Random.Range(_playAreaMin.x, _playAreaMax.x);
 
                 //Starting Y just above play area;
-                position.z = _playAreaMax.z + 1;
+                position.z = -_playAreaMin.z + 1;
 
                 enemy.transform.position = position;
+                enemy.transform.rotation = Quaternion.Euler(0,180,0);
             }
         }
         Invoke("SpawnEnemies", Random.Range(_minEnemySpawnTime, _maxEnemySpawnTime));

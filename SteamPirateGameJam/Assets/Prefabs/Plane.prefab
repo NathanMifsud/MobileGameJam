@@ -38,9 +38,11 @@ GameObject:
   - component: {fileID: 4843462449816384}
   - component: {fileID: 114099871159655312}
   - component: {fileID: 114536579807389632}
+  - component: {fileID: 65751748811401878}
+  - component: {fileID: 54854672308013352}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,7 +87,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1630567350872518}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.88, y: 0.58, z: 2.8300018}
+  m_LocalPosition: {x: 0.88, y: 1.78, z: 5.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4843462449816384}
@@ -125,7 +127,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1328335294615036}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21, y: 0, z: 70.1}
+  m_LocalPosition: {x: -192.15701, y: 146.84436, z: -125.398026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4659761917484218}
@@ -215,6 +217,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1570632204626178}
   m_Mesh: {fileID: 4300000, guid: 171d43b11e3ed2045b1092ba9c30d444, type: 3}
+--- !u!54 &54854672308013352
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1328335294615036}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65751748811401878
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1328335294615036}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.97, y: 11.32, z: 11.47}
+  m_Center: {x: 0, y: 4.46, z: 0}
 --- !u!95 &95012525683326046
 Animator:
   serializedVersion: 3
@@ -247,18 +276,19 @@ MonoBehaviour:
   _health: 1
   _currentHealth: 1
   _deathEffect: {fileID: 0}
+  _FiringEffect: {fileID: 0}
+  _MuzzleLaunchPoint: {fileID: 4333420550405160}
   _baseFireDelay: 1
   _currentFireDelay: 1
   _EnemyType: 0
   _RespawnDelay: 1
-  _SpawnLocation: {fileID: 4333420550405160}
+  _SpawnLocation: {fileID: 0}
   _CurrentState: 0
   _MovementSpeed: 35
   _RotationSpeed: 2
   _FiringTarget: {fileID: 0}
   _FindRandomTargetWithinArea: 0
-  _AreaBounds: {fileID: 1304235731285188, guid: b14fbe847ad2ae345b00a396a0c4a2fb,
-    type: 2}
+  _AreaBounds: {fileID: 0}
 --- !u!114 &114536579807389632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -270,12 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bee6570a744d04393aff7050b89e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _TargetPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _TargetPoints: []
   _TargetThreshold: 5
   _MaxRotationDelta: 1000
   _MaxMagnitudeDelta: 0

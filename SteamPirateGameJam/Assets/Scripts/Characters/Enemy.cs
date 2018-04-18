@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//script written by Deeons
+
 public class Enemy : Character {
 
     //----------------------------------------------------------------------------------
@@ -117,7 +119,7 @@ public class Enemy : Character {
             }
             else // default action shoot stright down
             {
-                SpawnBullet(transform.position, Quaternion.Euler(Vector3.down));
+                SpawnBullet(_MuzzleLaunchPoint.position, Quaternion.Euler(transform.forward));
             }
         }
         else // Shoot towards target
