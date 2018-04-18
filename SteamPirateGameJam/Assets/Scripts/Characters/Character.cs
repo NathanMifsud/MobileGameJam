@@ -59,7 +59,7 @@ public class Character : MonoBehaviour
     {
         if(_deathEffect != null) // Create death effect
         {
-            Destroy(Instantiate(_deathEffect, transform.position, Quaternion.identity), 5.0f);
+            Destroy(Instantiate(_deathEffect, transform.position, Quaternion.identity, transform), 5.0f);
         }
         transform.position = GameManager._Instance.gameObject.transform.position;
         gameObject.SetActive(false);

@@ -55,7 +55,6 @@ public class GameManager : MonoBehaviour
     public List<Pickup> _ActivePickups;
     [HideInInspector]
     public List<Pickup> _PendingPickups;
-
     //----------------------------------------------------------------------------------
     // *** FUNCTIONS ***
 
@@ -64,7 +63,7 @@ public class GameManager : MonoBehaviour
     ///     Startup
     /// 
     /// -------------------------------------------
-     
+
     private void Awake() {
      
         // Destroy old singleton if it doesnt match THIS instance
@@ -87,6 +86,7 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < enemyType.Count; i++){
 
                 // Create game object
+
                 _AllEnemies.Add(Instantiate(enemyType._Prefab.gameObject, transform.position, Quaternion.identity).GetComponent<Enemy>());
             }
         }

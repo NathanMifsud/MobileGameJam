@@ -34,6 +34,9 @@ public class ObjectSpawner : MonoBehaviour
     private Vector3 _playAreaMin;
     private Vector3 _playAreaMax;
 
+    public float _SpawnAtZ = 1;
+    public float _DeathAtZ = 1;
+
     // Use this for initialization
     void Start ()
     {
@@ -66,7 +69,7 @@ public class ObjectSpawner : MonoBehaviour
 
     public void SpawnEnemies()
     {
-        Enemy.EnemyType randomEnemySelect = (Enemy.EnemyType)Random.Range(0,(int)Enemy.EnemyType.Size);
+        Enemy.EnemyType randomEnemySelect = (Enemy.EnemyType)Random.Range(0,(int)Enemy.EnemyType.Size-1);
 
         List<Enemy> enemies = new List<Enemy>();
 
@@ -99,12 +102,13 @@ public class ObjectSpawner : MonoBehaviour
                 position.x = Random.Range(_playAreaMin.x, _playAreaMax.x);
 
                 //Starting Y just above play area;
-                position.z = -_playAreaMin.z + 1;
+                position.z = _SpawnAtZ;
 
                 enemy.transform.position = position;
                 enemy.transform.rotation = Quaternion.Euler(0,180,0);
 
                 enemy.gameObject.SetActive(true);
+                enemy._deathZone = _DeathAtZ;
             }
         }
         Invoke("SpawnEnemies", Random.Range(_minEnemySpawnTime, _maxEnemySpawnTime));
