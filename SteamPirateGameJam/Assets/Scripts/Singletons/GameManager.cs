@@ -254,31 +254,17 @@ public class GameManager : MonoBehaviour
         List<Enemy> list = new List<Enemy>();
 
         // There are enough pending enemies to return
-        if (_AvailiableEnemies.Count >= amount) {
+        foreach (Enemy enemy in _AvailiableEnemies)
+        {
 
-            for (int i = 0; i < amount; i++) {
-
-                // If it is a matching enemy type
-                if (_AvailiableEnemies[i]._EnemyType == type) {
-
-                    list.Add(_AvailiableEnemies[i]);
-                }
+            // If it is a matching enemy type
+            if (enemy._EnemyType == type)
+            {
+                list.Add(enemy);
             }
-        }
 
-        // There are NOT enough pending enemies to return
-        else {
-
-            // Get as many enemies as possible of the same type
-            int difference = amount - _AvailiableEnemies.Count;
-            for (int i = 0; i < amount - difference; i++) { 
-
-                // If it is a matching enemy type
-                if (_AvailiableEnemies[i]._EnemyType == type) {
-
-                    list.Add(_AvailiableEnemies[i]);
-                }
-            }
+            if (list.Count > amount)
+                break;
         }
 
         foreach (Enemy enemy in list)
