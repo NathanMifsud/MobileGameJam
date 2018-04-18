@@ -507,13 +507,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _EnemyTypes:
   - _Prefab: {fileID: 1405138137006242, guid: a47cf021d4a6e3d469a1b5f66d2aa13e, type: 2}
-    Count: 30
-    FlockSize: 5
-  - _Prefab: {fileID: 1086400969107502, guid: 6915479e9aae8a545a14f8b5e1a9009b, type: 2}
-    Count: 30
+    Count: 15
     FlockSize: 5
   - _Prefab: {fileID: 1328335294615036, guid: ba0dd030bc7f4b3409c74603f6630b92, type: 2}
-    Count: 30
+    Count: 20
+    FlockSize: 5
+  - _Prefab: {fileID: 1086400969107502, guid: 6915479e9aae8a545a14f8b5e1a9009b, type: 2}
+    Count: 15
     FlockSize: 5
   _AllEnemies: []
   _ActiveEnemies: []
