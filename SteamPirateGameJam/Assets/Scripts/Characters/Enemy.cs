@@ -38,6 +38,9 @@ public class Enemy : Character {
 
     private bool _inGameArea = false;
 
+    [HideInInspector]
+    public float _deathZone;
+
     //----------------------------------------------------------------------------------
     // *** FUNCTIONS ***
 
@@ -77,6 +80,13 @@ public class Enemy : Character {
                 GameManager._Instance._AvailiableEnemies.Add(this);
                 GameManager._Instance._PendingEnemies.Remove(this);
             }
+        }
+
+        if(transform.position.z < _deathZone)
+        {
+            GameManager._Instance._PendingEnemies.Add(this);
+            GameManager._Instance._ActiveEnemies.Remove(this);
+            gameObject.SetActive(false);
         }
     }
 
